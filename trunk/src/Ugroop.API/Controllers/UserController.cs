@@ -24,21 +24,32 @@ namespace Ugroop.API.Controllers {
             }
         }
 
-        // GET : Account by Id
-        public string Get_AccountById(string id) {
-            return JsonConvert.SerializeObject(AccountService.Get_AccountById(id));
+        // POST : Get Account by Id
+        //public string Get_AccountById(string id) {
+        [HttpPost]
+        public string Get_AccountById(JObject jsonData) {
+            var idAccount = JsonData.Instance(jsonData).Get_JsonObject("id").ToString();
+            //var data = JsonConvert.SerializeObject(AccountService.Get_AccountById(idAccount));
+            return JsonConvert.SerializeObject(AccountService.Get_AccountById(idAccount));
         }
 
         // POST : Add Account
         [HttpPost]
         public bool Add_Account(JObject jsonData) {
-
             var account = JEntity<Account>.Instance().Get_Entity(jsonData);
-            //return _accountService.Add(account);
-
             return AccountService.Add(account);
-
         }
+
+
+        // POST : Get AccountInfo by Id
+        [HttpPost]
+        public string Get_AccountInfoById(JObject jsonData) {
+            var idAccount = JsonData.Instance(jsonData).Get_JsonObject("id").ToString();
+            var data = JsonConvert.SerializeObject(AccountService.Get_AccountInfoById(idAccount));
+            return JsonConvert.SerializeObject(AccountService.Get_AccountInfoById(idAccount));
+        }
+
+
 
     }
 

@@ -8,7 +8,11 @@
         //ParseX();
         //ParseBBB();
 
-        Insert_Account();
+        //Insert_Account();
+
+        //Get_AccountById();
+        Get_AccountInfoById();
+
     });
 
     function ParseX() {
@@ -65,13 +69,54 @@
             type: "POST",
             data: JSON.stringify({ UserSessionKey: sessID, Account : model }),
             //data: model,
-            //data: { sessionKey: newSessId, Account: newModel },
             url: "/user/Add_Account",
             contentType: "application/json",
             dataType: 'json',
         }).done(function (res) {
-            console.log('res', res);
+            //console.log('res', res);
             // Do something with the result :)
+        });
+
+    }
+
+    function Get_AccountById() {
+
+
+        var Id = "579482509269bd42d8615655";
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        $.ajax({
+            //type: "GET",
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, id: Id }),
+            url: "/user/Get_AccountById",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //alert(res);
+            obj = JSON.parse(res);
+
+            alert(obj.AccountEmail);
+        });
+
+    }
+
+    function Get_AccountInfoById() {
+
+        var Id = "579482569269bd42d861565c";
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        $.ajax({
+            //type: "GET",
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, id: Id }),
+            url: "/user/Get_AccountInfoById",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
         });
 
     }

@@ -15,8 +15,8 @@ namespace Ugroop.API.Helper.Filter {
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
             var jsonData = (JObject)actionContext.ActionArguments["jsonData"];
-            var jData = new JsonData(jsonData);
-            UserSessionKey = jData.Get_JsonObject("UserSessionKey").ToString();
+            var idAccount = JsonData.Instance(jsonData).Get_JsonObject("id");
+            UserSessionKey = JsonData.Instance(jsonData).Get_JsonObject("UserSessionKey").ToString();
 
             var baseController = ((BaseController)actionContext.ControllerContext.Controller);
             _accountService = baseController.AccountService;

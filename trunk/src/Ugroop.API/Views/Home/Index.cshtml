@@ -1,0 +1,85 @@
+﻿
+
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        //ParseX();
+        //ParseBBB();
+
+        Insert_Account();
+    });
+
+    function ParseX() {
+        $.ajax({
+            url: "/Test/TestAAA",
+            type: 'get',
+            success: function (data) {
+                var items = JSON.parse(data);
+              
+                $.each(items, function (item, value) {
+                    $("#divTest").append(item + ' : ' + value + ' / ');
+                });
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+
+    function ParseBBB() {
+        $.ajax({
+            url: "/Test/TestBBB",
+            type: 'get',
+            success: function (data) {
+                var items = JSON.parse(data);
+                for (var i = 0; i < items.length; i++) {
+                    $.each(items[i], function (field, value) {
+                        $("#divTest").append(field + ' : ' + value + ' / ');
+                    });
+                }
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+
+    function Insert_Account() {
+
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        var model = {
+            AccountRoleID: 1,
+            AccountEmail : "robert.valdoria@ugroop.com.auYYY",
+            AccountPassword: "55e5802ad7a473a194f2fa049875850a",
+            ActivationCode: "12345",
+            ActivationDate: "2016-03-01 22:43:09.340",
+            isActivated: 'true',
+            isActive: 'true',
+        };
+
+ 
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, Account : model }),
+            //data: model,
+            //data: { sessionKey: newSessId, Account: newModel },
+            url: "/user/Add_Account",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            console.log('res', res);
+            // Do something with the result :)
+        });
+
+    }
+
+</script>
+
+<div id="divTest">
+
+
+</div>
+

@@ -11,7 +11,11 @@
         //Insert_Account();
 
         //Get_AccountById();
-        Get_AccountInfoById();
+        //Get_AccountInfoById();
+
+        //Get_UserSessionToken();
+
+        Update_Account();
 
     });
 
@@ -81,8 +85,7 @@
 
     function Get_AccountById() {
 
-
-        var Id = "579482509269bd42d8615655";
+        var Id = "57b186d4988f3421442a15ee";
         var sessID = "954b02d5849345f9860966689275a54b";
 
         $.ajax({
@@ -117,6 +120,62 @@
             //alert(res);
             //obj = JSON.parse(res);
             //alert(obj.AccountEmail);
+        });
+
+    }
+
+    function Get_UserSessionToken() {
+
+        var userid = "robert.valdoria@ugroop.com.au";
+        var pass = "Aa34567(";
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        $.ajax({
+            type: "GET",
+            //type: "POST",
+            //data: JSON.stringify({ username: userid, password: pass }),
+            //data: { username: userid, password: pass },
+            data: { UserSessionKey: sessID, username: userid, password: pass },
+            url: "/user/ValidateUser",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
+        });
+
+            
+    }
+
+    function Update_Account() {
+
+        var AccountId = "57b186d4988f3421442a15ee";
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        var model = {
+            Id: AccountId,
+            AccountRoleID: 1,
+            //AccountEmail: "robert.valdoria@ugroop.com.auYYY",
+            AccountEmail: "robert.valdoria@ugroop.com.auXXX",
+            AccountPassword: "55e5802ad7a473a194f2fa049875850a",
+            ActivationCode: "12345",
+            ActivationDate: "2016-03-01 22:43:09.340",
+            isActivated: 'true',
+            isActive: 'true',
+        };
+
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, Account: model }),
+            //data: model,
+            url: "/user/Update_Account",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //console.log('res', res);
+            // Do something with the result :)
         });
 
     }

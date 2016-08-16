@@ -14,14 +14,21 @@ namespace Ugroop.API.Helper.Filter {
         private IAccountService _accountService;
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
-            var jsonData = (JObject)actionContext.ActionArguments["jsonData"];
-            var idAccount = JsonData.Instance(jsonData).Get_JsonObject("id");
-            UserSessionKey = JsonData.Instance(jsonData).Get_JsonObject("UserSessionKey").ToString();
+            UserSessionKey = string.Empty;
+            if (actionContext.ActionArguments.ContainsKey("UserSessionKey")) {
+                UserSessionKey = actionContext.ActionArguments["UserSessionKey"].ToString();
+            }
+            if (actionContext.ActionArguments.ContainsKey("jsonData")) {
+                var jsonData = (JObject)actionContext.ActionArguments["jsonData"];
+                if (jsonData != null) {
+                    UserSessionKey = JsonData.Instance(jsonData).Get_JsonObject("UserSessionKey").ToString();
+                }
+            }
 
             var baseController = ((BaseController)actionContext.ControllerContext.Controller);
             _accountService = baseController.AccountService;
 
-            var result = _accountService.Validate_UserSession(UserSessionKey);
+            var result = !string.IsNullOrEmpty(UserSessionKey) ? _accountService.Validate_UserSession(UserSessionKey) : true;
             if (result == false) {
                 var response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Invalid User Session.");
                 actionContext.Response = response;

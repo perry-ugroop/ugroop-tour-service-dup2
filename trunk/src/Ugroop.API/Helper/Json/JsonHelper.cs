@@ -7,7 +7,6 @@ using System.Web;
 namespace Ugroop.API.Helper.Json {
 
     public class JsonData {
-        //dynamic jData;
         private static JObject dataX;
 
         private static readonly JsonData instance = new JsonData();
@@ -17,23 +16,13 @@ namespace Ugroop.API.Helper.Json {
             return instance;
         }
 
-        //public JsonData(JObject data) {
-        //    jData = data;
-        //    dataX = data;
-        //}
-
         public JToken Get_JsonObject(string objectName) {
             return dataX.GetValue(objectName);
         }
 
-        //public dynamic Dynamic {
-        //    get { return jData; }
-        //}
-
         public JObject JsonObject {
             get { return dataX; }
         }
-
     }
 
     public class JEntity<T> {
@@ -64,7 +53,6 @@ namespace Ugroop.API.Helper.Json {
 
             //data.JsonObject.Add("AccountService", token);
         }
-
     }
 
 }

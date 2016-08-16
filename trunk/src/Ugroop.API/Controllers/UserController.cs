@@ -24,13 +24,13 @@ namespace Ugroop.API.Controllers {
             }
         }
 
-        // POST : Get Account by Id
-        //public string Get_AccountById(string id) {
+
+        #region ACCOUNT                 .
+
         [HttpPost]
         public string Get_AccountById(JObject jsonData) {
-            var idAccount = JsonData.Instance(jsonData).Get_JsonObject("id").ToString();
-            //var data = JsonConvert.SerializeObject(AccountService.Get_AccountById(idAccount));
-            return JsonConvert.SerializeObject(AccountService.Get_AccountById(idAccount));
+            var userId = JsonData.Instance(jsonData).Get_JsonObject("id").ToString();
+            return JsonConvert.SerializeObject(AccountService.Get_AccountById(userId));
         }
 
         // POST : Add Account
@@ -40,6 +40,19 @@ namespace Ugroop.API.Controllers {
             return AccountService.Add(account);
         }
 
+        // POST : Update Account
+        [HttpPost]
+        public bool Update_Account(JObject jsonData) {
+            var account = JEntity<Account>.Instance().Get_Entity(jsonData);
+            return AccountService.Update(account);
+        }
+
+
+        #endregion
+
+
+
+        #region ACCOUNT INFO                .
 
         // POST : Get AccountInfo by Id
         [HttpPost]
@@ -49,6 +62,9 @@ namespace Ugroop.API.Controllers {
             return JsonConvert.SerializeObject(AccountService.Get_AccountInfoById(idAccount));
         }
 
+
+
+        #endregion
 
 
     }

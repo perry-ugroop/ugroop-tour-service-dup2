@@ -11,11 +11,12 @@
         //Insert_Account();
 
         //Get_AccountById();
+
         //Get_AccountInfoById();
 
-        //Get_UserSessionToken();
+        Get_UserSessionToken();
 
-        Update_Account();
+        //Update_Account();
 
     });
 
@@ -56,7 +57,7 @@
 
     function Insert_Account() {
 
-        var sessID = "954b02d5849345f9860966689275a54b";
+        var sessID = "f2a7a6d928844179a4023826ea47fa80";
 
         var model = {
             AccountRoleID: 1,
@@ -85,7 +86,7 @@
 
     function Get_AccountById() {
 
-        var Id = "57b186d4988f3421442a15ee";
+        var Id = "579481ab9269bd22ecef2248X";
         var sessID = "954b02d5849345f9860966689275a54b";
 
         $.ajax({
@@ -97,9 +98,10 @@
             dataType: 'json',
         }).done(function (res) {
             //alert(res);
-            obj = JSON.parse(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
 
-            alert(obj.AccountEmail);
+            //alert(res.AccountEmail);
         });
 
     }
@@ -127,15 +129,13 @@
     function Get_UserSessionToken() {
 
         var userid = "robert.valdoria@ugroop.com.au";
-        var pass = "Aa34567(";
-        var sessID = "954b02d5849345f9860966689275a54b";
+        var pass = "Aa34567(X";
+        //var sessID = "954b02d5849345f9860966689275a54b";
 
         $.ajax({
             type: "GET",
-            //type: "POST",
-            //data: JSON.stringify({ username: userid, password: pass }),
-            //data: { username: userid, password: pass },
-            data: { UserSessionKey: sessID, username: userid, password: pass },
+            //data: { UserSessionKey: sessID, username: userid, password: pass },
+            data: { username: userid, password: pass },
             url: "/user/ValidateUser",
             contentType: "application/json",
             dataType: 'json',

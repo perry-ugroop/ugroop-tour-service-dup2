@@ -1,10 +1,23 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Ugroop.API.Helper.Json {
+
+    public static class JSON {
+
+        public static string JsonSerialize(this object obj) {
+            return JsonConvert.SerializeObject(obj);
+        }
+
+        public static object JsonDeserialize(this string jsonStr) {
+            return JsonConvert.DeserializeObject(jsonStr);
+        }
+
+    }
 
     public class JsonData {
         private static JObject dataX;

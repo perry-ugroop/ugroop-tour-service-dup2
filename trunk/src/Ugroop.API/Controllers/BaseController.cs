@@ -1,7 +1,10 @@
 ﻿using System.Web.Http;
+using System.Web.Http.Cors;
 using UGroopData.Mongo.Service.UGroopWeb.Interface;
 
 namespace Ugroop.API.Controllers {
+
+    [EnableCors(origins: "http://localhost:46013", headers: " * ", methods: "*")]
     public class BaseController : ApiController {
 
         private IAccountService _accountService;

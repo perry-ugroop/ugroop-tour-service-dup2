@@ -34,7 +34,7 @@ namespace Ugroop.API.Helper.Filter {
                 actionContext.Response = response;
                 //throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
             }
-            base.OnActionExecuting(actionContext);
+                base.OnActionExecuting(actionContext);
         }
 
     }

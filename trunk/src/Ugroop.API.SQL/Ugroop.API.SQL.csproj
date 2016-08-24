@@ -147,10 +147,10 @@
       <HintPath>..\..\..\DLL\DataLayer\UGroopData.Entity.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Repository">
-      <HintPath>..\..\..\DLL\DataLayer\UGroopData.Sql.Repository.dll</HintPath>
+      <HintPath>..\..\DLL\DataLayer\UGroopData.Sql.Repository.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Service.UGroopWeb">
-      <HintPath>..\..\..\DLL\DataLayer\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
+      <HintPath>..\..\DLL\DataLayer\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Utilities">
       <HintPath>..\..\..\DLL\DataLayer\UGroopData.Utilities.dll</HintPath>

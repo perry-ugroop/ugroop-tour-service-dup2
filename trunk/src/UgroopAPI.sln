@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Mongo", "Ugroop.API\Ugroop.API.Mongo.csproj", "{AECF94F9-81C3-4AF3-83BA-926B18FAE569}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Test", "Ugroop.API.Test\Ugroop.API.Test.csproj", "{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{C64FF3F4-9C87-462F-A261-C53FA9090DAE}"
@@ -13,16 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLServer", "SQLServer", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.SQL", "Ugroop.API.SQL\Ugroop.API.SQL.csproj", "{23E9B5A0-9761-4937-8276-63E88D7EAAD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Mongo", "Ugroop.API.Mongo\Ugroop.API.Mongo.csproj", "{AECF94F9-81C3-4AF3-83BA-926B18FAE569}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,13 +27,17 @@ Global
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AECF94F9-81C3-4AF3-83BA-926B18FAE569}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AECF94F9-81C3-4AF3-83BA-926B18FAE569} = {C64FF3F4-9C87-462F-A261-C53FA9090DAE}
 		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE} = {C64FF3F4-9C87-462F-A261-C53FA9090DAE}
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5} = {E36B65E2-BCDF-4178-9C9E-2E89C236C847}
+		{AECF94F9-81C3-4AF3-83BA-926B18FAE569} = {C64FF3F4-9C87-462F-A261-C53FA9090DAE}
 	EndGlobalSection
 EndGlobal

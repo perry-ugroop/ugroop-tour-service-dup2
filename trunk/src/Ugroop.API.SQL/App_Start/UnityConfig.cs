@@ -1,13 +1,8 @@
 using Microsoft.Practices.Unity;
-using System;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Dispatcher;
 using UGroopData.Sql.Service.UGroopWeb.Concrete;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 using Unity.WebApi;
-using System.Net.Http;
-using System.Web.Mvc;
 
 namespace Ugroop.API.SQL {
     public static class UnityConfig {

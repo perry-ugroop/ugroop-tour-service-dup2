@@ -144,7 +144,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Entity">
-      <HintPath>..\..\..\DLL\DataLayer\UGroopData.Entity.dll</HintPath>
+      <HintPath>..\..\DLL\DataLayer\UGroopData.Entity.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Repository">
       <HintPath>..\..\DLL\DataLayer\UGroopData.Sql.Repository.dll</HintPath>
@@ -153,7 +153,7 @@
       <HintPath>..\..\DLL\DataLayer\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Utilities">
-      <HintPath>..\..\..\DLL\DataLayer\UGroopData.Utilities.dll</HintPath>
+      <HintPath>..\..\DLL\DataLayer\UGroopData.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>

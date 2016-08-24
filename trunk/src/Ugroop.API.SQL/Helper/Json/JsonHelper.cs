@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Ugroop.API.Mongo.Helper.Json {
+namespace Ugroop.API.SQL.Helper.Json {
 
     public static class JSON {
 

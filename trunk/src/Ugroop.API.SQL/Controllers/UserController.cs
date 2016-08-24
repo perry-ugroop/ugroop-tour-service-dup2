@@ -1,19 +1,16 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Web.Http;
-using Ugroop.API.Mongo.Helper.Filter;
-using Ugroop.API.Mongo.Helper.Json;
-using UgroopData.Entity;
-using UGroopData.Mongo.Service.UGroopWeb.Interface;
+using Ugroop.API.SQL.Helper.Json;
+using UGroopData.Sql.Repository.Data;
+using UGroopData.Sql.Service.UGroopWeb.Interface;
 
-namespace Ugroop.API.Mongo.Controllers {
+namespace Ugroop.API.SQL.Controllers {
 
     public class UserController : SecurityController {
 
-        public UserController(IAccountService accountService) : base(accountService) { }
-
+        public UserController(IAccountService accountService, IUserService userService) : base(accountService, userService) { }
 
         // GET : Login -> Token / API Key
         [HttpGet]
@@ -22,15 +19,15 @@ namespace Ugroop.API.Mongo.Controllers {
                 Content = new StringContent(AccountService.ValidateUser(username, password).JsonSerialize())
             };
         }
-       
+
         #region ACCOUNT                 .
 
         // POST : Get Account By Id
         [HttpPost]
         public HttpResponseMessage Get_AccountById(JObject jsonData) {
-            var userId = JsonData.Instance(jsonData).Get_JsonObject("id").ToString();
+            int userId = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
             return new HttpResponseMessage {
-                Content = new StringContent(AccountService.Get_AccountById(userId).JsonSerialize())
+                Content = new StringContent(UserService.Get_AccountById(userId).JsonSerialize())
             };
         }
 
@@ -40,7 +37,7 @@ namespace Ugroop.API.Mongo.Controllers {
         public HttpResponseMessage Add_Account(JObject jsonData) {
             var account = JEntity<Account>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
-                Content = new StringContent(AccountService.Add(account).JsonSerialize())
+                Content = new StringContent(UserService.Add(account).JsonSerialize())
             };
         }
 
@@ -49,7 +46,7 @@ namespace Ugroop.API.Mongo.Controllers {
         public HttpResponseMessage Update_Account(JObject jsonData) {
             var account = JEntity<Account>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
-                Content = new StringContent(AccountService.Update(account).JsonSerialize())
+                Content = new StringContent(UserService.Update(account).JsonSerialize())
             };
         }
 
@@ -62,9 +59,9 @@ namespace Ugroop.API.Mongo.Controllers {
         // POST : Get AccountInfo by Id
         [HttpPost]
         public HttpResponseMessage Get_AccountInfoById(JObject jsonData) {
-            var idAccount = JsonData.Instance(jsonData).Get_JsonObject("id").ToString();
+            var idAccount = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
             return new HttpResponseMessage {
-                Content = new StringContent(AccountService.Get_AccountInfoById(idAccount).JsonSerialize())
+                Content = new StringContent(AccountService.Get_AccountByAccountId(idAccount).JsonSerialize())
             };
         }
 

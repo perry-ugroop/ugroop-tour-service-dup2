@@ -1,18 +1,11 @@
 ﻿using System.Web.Mvc;
 
-namespace Ugroop.API.Mongo.Controllers {
+namespace Ugroop.API.SQL.Controllers {
 
 
     public class HomeController : Controller {
 
-        //private const string URL = "http://localhost:46013/api/Test/TestAAA";
         private const string URL = "http://localhost:46013/Test/TestAAA";
-
-        //private ISettingService _settingService;
-
-        //public HomeController(ISettingService settingService) {
-        //    _settingService = settingService;
-        //}
 
         public ActionResult Index() {
 

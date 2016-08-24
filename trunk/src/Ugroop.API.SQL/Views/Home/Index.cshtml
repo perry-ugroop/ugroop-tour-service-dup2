@@ -1,0 +1,191 @@
+﻿
+
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        //ParseX();
+        //ParseBBB();
+
+        //Get_UserSessionToken();
+
+        //Insert_Account();
+
+        Get_AccountById();
+
+        //Get_AccountInfoById();
+
+        //Update_Account();
+
+    });
+
+    function ParseX() {
+        $.ajax({
+            url: "/Test/TestAAA",
+            type: 'get',
+            success: function (data) {
+                var items = JSON.parse(data);
+              
+                $.each(items, function (item, value) {
+                    $("#divTest").append(item + ' : ' + value + ' / ');
+                });
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+
+    function ParseBBB() {
+        $.ajax({
+            url: "/Test/TestBBB",
+            type: 'get',
+            success: function (data) {
+                var items = JSON.parse(data);
+                for (var i = 0; i < items.length; i++) {
+                    $.each(items[i], function (field, value) {
+                        $("#divTest").append(field + ' : ' + value + ' / ');
+                    });
+                }
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    }
+
+    function Insert_Account() {
+
+        var sessID = "f2a7a6d928844179a4023826ea47fa80";
+
+        var model = {
+            AccountRoleID: 1,
+            AccountEmail : "robert.valdoria@ugroop.com.auYYY",
+            AccountPassword: "55e5802ad7a473a194f2fa049875850a",
+            ActivationCode: "12345",
+            ActivationDate: "2016-03-01 22:43:09.340",
+            isActivated: 'true',
+            isActive: 'true',
+        };
+
+ 
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, Account : model }),
+            //data: model,
+            url: "/user/Add_Account",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //console.log('res', res);
+            // Do something with the result :)
+        });
+
+    }
+
+    function Get_AccountById() {
+
+        var Id = "33";
+        var sessID = "6c36715eac614058bca2c7055b17f6ad";
+
+        $.ajax({
+            //type: "GET",
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, id: Id }),
+            url: "/user/Get_AccountById",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
+
+            //alert(res.AccountEmail);
+        });
+
+    }
+
+    function Get_AccountInfoById() {
+
+        var Id = "579482569269bd42d861565c";
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        $.ajax({
+            //type: "GET",
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, id: Id }),
+            url: "/user/Get_AccountInfoById",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
+        });
+
+    }
+
+    function Get_UserSessionToken() {
+
+        var userid = "robert.valdoria@ugroop.com.au";
+        var pass = "Aa34567(";
+        //var sessID = "954b02d5849345f9860966689275a54b";
+
+        //alert(pass);
+
+        $.ajax({
+            type: "GET",
+            //data: { UserSessionKey: sessID, username: userid, password: pass },
+            data: { username: userid, password: pass },
+            url: "/user/ValidateUser",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
+        });
+
+            
+    }
+
+    function Update_Account() {
+
+        var AccountId = "57b186d4988f3421442a15ee";
+        var sessID = "954b02d5849345f9860966689275a54b";
+
+        var model = {
+            Id: AccountId,
+            AccountRoleID: 1,
+            //AccountEmail: "robert.valdoria@ugroop.com.auYYY",
+            AccountEmail: "robert.valdoria@ugroop.com.auXXX",
+            AccountPassword: "55e5802ad7a473a194f2fa049875850a",
+            ActivationCode: "12345",
+            ActivationDate: "2016-03-01 22:43:09.340",
+            isActivated: 'true',
+            isActive: 'true',
+        };
+
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, Account: model }),
+            //data: model,
+            url: "/user/Update_Account",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //console.log('res', res);
+            // Do something with the result :)
+        });
+
+    }
+
+</script>
+
+<div id="divTest">
+
+
+</div>
+

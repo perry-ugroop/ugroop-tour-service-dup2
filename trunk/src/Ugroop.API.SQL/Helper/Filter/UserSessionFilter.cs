@@ -3,11 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
-using Ugroop.API.Mongo.Controllers;
-using Ugroop.API.Mongo.Helper.Json;
-using UGroopData.Mongo.Service.UGroopWeb.Interface;
+using Ugroop.API.SQL.Controllers;
+using Ugroop.API.SQL.Helper.Json;
+using UGroopData.Sql.Service.UGroopWeb.Interface;
 
-namespace Ugroop.API.Mongo.Helper.Filter {
+namespace Ugroop.API.SQL.Helper.Filter {
     public class UserSessionFilter : ActionFilterAttribute {
 
         private string UserSessionKey;

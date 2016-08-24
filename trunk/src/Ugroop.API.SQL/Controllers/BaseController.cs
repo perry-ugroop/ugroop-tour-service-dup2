@@ -1,8 +1,8 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Cors;
-using UGroopData.Mongo.Service.UGroopWeb.Interface;
+using UGroopData.Sql.Service.UGroopWeb.Interface;
 
-namespace Ugroop.API.Mongo.Controllers {
+namespace Ugroop.API.SQL.Controllers {
 
     [EnableCors(origins: "http://localhost:46013", headers: " * ", methods: "*")]
     public class BaseController : ApiController {
@@ -10,6 +10,9 @@ namespace Ugroop.API.Mongo.Controllers {
         private IAccountService _accountService;
         private IReferenceService _referenceService;
         private ISettingService _settingService;
+        private IUserService _userService;
+
+        #region Public Properties                   .
 
         public IAccountService AccountService {
             get { return _accountService; }
@@ -23,8 +26,19 @@ namespace Ugroop.API.Mongo.Controllers {
             get { return _settingService; }
         }
 
+        public IUserService UserService {
+            get { return _userService; }
+        }
+
+        #endregion
+
         public BaseController(IAccountService accountService) {
             _accountService = accountService;
+        }
+
+        public BaseController(IAccountService accountService, IUserService userService) {
+            _accountService = accountService;
+            _userService = userService;
         }
 
         public BaseController(IAccountService accountService, IReferenceService referenceService) {
@@ -36,6 +50,14 @@ namespace Ugroop.API.Mongo.Controllers {
             _accountService = accountService;
             _referenceService = referenceService;
             _settingService = settingService;
+        }
+
+        public BaseController(IAccountService accountService, IReferenceService referenceService,
+                              ISettingService settingService, IUserService userService) {
+            _accountService = accountService;
+            _referenceService = referenceService;
+            _settingService = settingService;
+            _userService = userService;
         }
 
     }

@@ -4,7 +4,6 @@ using UGroopData.Sql.Service.UGroopWeb.Interface;
 
 namespace Ugroop.API.SQL.Controllers {
 
-    [EnableCors(origins: "http://localhost:46013", headers: " * ", methods: "*")]
     public class BaseController : ApiController {
 
         private IAccountService _accountService;

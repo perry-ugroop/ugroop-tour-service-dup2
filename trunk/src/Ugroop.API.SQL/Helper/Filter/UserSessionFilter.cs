@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
@@ -19,9 +20,15 @@ namespace Ugroop.API.SQL.Helper.Filter {
                 UserSessionKey = actionContext.ActionArguments["UserSessionKey"].ToString();
             }
             if (actionContext.ActionArguments.ContainsKey("jsonData")) {
-                var jsonData = (JObject)actionContext.ActionArguments["jsonData"];
-                if (jsonData != null) {
-                    UserSessionKey = JsonData.Instance(jsonData).Get_JsonObject("UserSessionKey").ToString();
+                try {
+                    var jsonData = (JObject)actionContext.ActionArguments["jsonData"];
+                    if (jsonData != null) {
+                        UserSessionKey = JsonData.Instance(jsonData).Get_JsonObject("UserSessionKey").ToString();
+                    }
+                }
+                catch {
+                    var response = actionContext.Request.CreateErrorResponse(HttpStatusCode.MethodNotAllowed, "Missing : UserSessionKey.");
+                    actionContext.Response = response;
                 }
             }
 
@@ -34,7 +41,7 @@ namespace Ugroop.API.SQL.Helper.Filter {
                 actionContext.Response = response;
                 //throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Unauthorized));
             }
-                base.OnActionExecuting(actionContext);
+            base.OnActionExecuting(actionContext);
         }
 
     }

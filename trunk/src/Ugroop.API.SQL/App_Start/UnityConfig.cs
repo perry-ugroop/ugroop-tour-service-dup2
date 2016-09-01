@@ -12,6 +12,8 @@ namespace Ugroop.API.SQL {
             container.RegisterType<IReferenceService, ReferenceService>();
             container.RegisterType<ISettingService, SettingService>();
             container.RegisterType<IUserService, UserService>();
+            container.RegisterType<ISysAccessService, SysAccessService>();
+            container.RegisterType<ITourService, TourService>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

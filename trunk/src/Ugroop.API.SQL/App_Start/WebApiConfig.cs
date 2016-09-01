@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using System.Net.Http.Headers;
+using System.Web.Http.Cors;
 
 namespace Ugroop.API.SQL {
     public static class WebApiConfig
@@ -11,7 +12,8 @@ namespace Ugroop.API.SQL {
             //config.SuppressDefaultHostAuthentication();
             //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -23,6 +25,7 @@ namespace Ugroop.API.SQL {
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
         }
+
 
     }
 }

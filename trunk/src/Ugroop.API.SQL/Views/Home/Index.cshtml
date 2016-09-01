@@ -12,11 +12,13 @@
 
         //Insert_Account();
 
-        Get_AccountById();
+        //Get_AccountById();
 
         //Get_AccountInfoById();
 
         //Update_Account();
+
+        Log_User();
 
     });
 
@@ -138,7 +140,8 @@
             type: "GET",
             //data: { UserSessionKey: sessID, username: userid, password: pass },
             data: { username: userid, password: pass },
-            url: "/user/ValidateUser",
+            //url: "/user/ValidateUser",
+            url: "http://localhost/ugAPI/user/ValidateUser",
             contentType: "application/json",
             dataType: 'json',
         }).done(function (res) {
@@ -181,6 +184,31 @@
         });
 
     }
+
+
+    function Log_User() {
+
+        var aaa = "robert.valdoria@ugroop.com.au";
+        var bbb = "Aa34567(";
+        var sessID = "3bf97b5144564655bed008eced1f168e";
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, username: aaa, pass: bbb }),
+            //data: JSON.stringify({ username: aaa, pass: bbb }),
+            url: "/user/LogUser",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
+
+            //alert(res.AccountEmail);
+        });
+
+    }
+
 
 </script>
 

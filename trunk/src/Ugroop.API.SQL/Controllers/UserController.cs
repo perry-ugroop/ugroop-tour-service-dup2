@@ -26,7 +26,7 @@ namespace Ugroop.API.SQL.Controllers {
         }
 
 
-        #region ACCOUNT                 .
+        #region ACCOUNT                     .
 
         ///<summary>
         ///POST : Get Account By Id
@@ -85,15 +85,82 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        ///<summary>
+        ///POST : AccountExistsByEmail(email)
+        ///</summary>
+        ///<remarks>
+        ///Check if email exists in user database.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage AccountExistsByEmail(JObject jsonData) {
+            var email = JsonData.Instance(jsonData).Get_JsonObject("email").ToString();
+            return new HttpResponseMessage {
+                Content = new StringContent(UserService.AccountExistsByEmail(email).JsonSerialize())
+            };
+        }
+
+        ///<summary>
+        ///POST : AccountExistsByEmailPassword(email,password)
+        ///</summary>
+        ///<remarks>
+        ///Check if email and password exists in user database.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage AccountExistsByEmailPassword(JObject jsonData) {
+            var email = JsonData.Instance(jsonData).Get_JsonObject("email").ToString();
+            var password = JsonData.Instance(jsonData).Get_JsonObject("password").ToString();
+            return new HttpResponseMessage {
+                Content = new StringContent(UserService.AccountExistsByEmailPassword(email, password).JsonSerialize())
+            };
+        }
+
+        ///<summary>
+        ///POST : ActivateSignUp(email)
+        ///</summary>
+        ///<remarks>
+        ///Check if account is active by email.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage ActivateSignUp(JObject jsonData) {
+            var email = JsonData.Instance(jsonData).Get_JsonObject("email").ToString();
+            return new HttpResponseMessage {
+                Content = new StringContent(UserService.ActivateSignUp(email).JsonSerialize())
+            };
+        }
+
+        ///<summary>
+        ///POST : ActivateSignUpByVerficationCode(email,verificationcode)
+        ///</summary>
+        ///<remarks>
+        ///Check if account is active by email and verificationcode.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage ActivateSignUpByVerficationCode(JObject jsonData) {
+            var email = JsonData.Instance(jsonData).Get_JsonObject("email").ToString();
+            var verificationcode = JsonData.Instance(jsonData).Get_JsonObject("verificationcode").ToString();
+            return new HttpResponseMessage {
+                Content = new StringContent(UserService.ActivateSignUp(email).JsonSerialize())
+            };
+        }
+
+        ///<summary>
+        ///POST : GetAccountByEmail(email)
+        ///</summary>
+        ///<remarks>
+        ///Get Account by email.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage GetAccountByEmail(JObject jsonData) {
+            var email = JsonData.Instance(jsonData).Get_JsonObject("email").ToString();
+            return new HttpResponseMessage {
+                Content = new StringContent(UserService.GetAccountByEmail(email).JsonSerialize())
+            };
+        }
 
         #endregion
 
 
-
-
         #region ACCOUNT INFO                .
-
-
 
         ///<summary>
         ///POST : Add AccountInfo
@@ -132,6 +199,5 @@ namespace Ugroop.API.SQL.Controllers {
 
 
     }
-
 
 }

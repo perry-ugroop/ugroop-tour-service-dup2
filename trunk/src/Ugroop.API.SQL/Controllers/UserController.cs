@@ -25,7 +25,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-
         #region ACCOUNT                     .
 
         ///<summary>
@@ -159,7 +158,6 @@ namespace Ugroop.API.SQL.Controllers {
 
         #endregion
 
-
         #region ACCOUNT INFO                .
 
         ///<summary>
@@ -196,7 +194,6 @@ namespace Ugroop.API.SQL.Controllers {
 
 
         #endregion
-
 
     }
 

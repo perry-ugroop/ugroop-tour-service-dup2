@@ -8,7 +8,7 @@
         //ParseX();
         //ParseBBB();
 
-        //Get_UserSessionToken();
+        Get_UserSessionToken();
 
         //Insert_Account();
 
@@ -18,7 +18,7 @@
 
         //Update_Account();
 
-        Log_User();
+        //Log_User();
 
     });
 
@@ -130,8 +130,10 @@
 
     function Get_UserSessionToken() {
 
+        var baseUrl = "http://10.29.7.3/uGroopAPI/";
         var userid = "robert.valdoria@ugroop.com.au";
-        var pass = "Aa34567(";
+        var pass = "Aa34567*";
+        //var pass = "Aa34567(";
         //var sessID = "954b02d5849345f9860966689275a54b";
 
         //alert(pass);
@@ -140,8 +142,9 @@
             type: "GET",
             //data: { UserSessionKey: sessID, username: userid, password: pass },
             data: { username: userid, password: pass },
-            //url: "/user/ValidateUser",
-            url: "http://localhost/ugAPI/user/ValidateUser",
+            url: "/user/ValidateUser",
+            //url: "http://localhost/ugAPI/user/ValidateUser",
+            //url: baseUrl + "user/ValidateUser",
             contentType: "application/json",
             dataType: 'json',
         }).done(function (res) {
@@ -185,7 +188,6 @@
 
     }
 
-
     function Log_User() {
 
         var aaa = "robert.valdoria@ugroop.com.au";
@@ -212,8 +214,8 @@
 
 </script>
 
+
 <div id="divTest">
 
 
 </div>
-

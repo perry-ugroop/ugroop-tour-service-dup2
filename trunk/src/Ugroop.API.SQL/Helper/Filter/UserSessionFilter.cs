@@ -16,6 +16,7 @@ namespace Ugroop.API.SQL.Helper.Filter {
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
             UserSessionKey = string.Empty;
+
             if (actionContext.ActionArguments.ContainsKey("UserSessionKey")) {
                 UserSessionKey = actionContext.ActionArguments["UserSessionKey"].ToString();
             }

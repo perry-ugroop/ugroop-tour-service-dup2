@@ -1,15 +1,18 @@
 ﻿using System.Web.Http;
-using System.Web.Http.Cors;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 
 namespace Ugroop.API.SQL.Controllers {
 
     public class BaseController : ApiController {
 
+        #region Private Properties                  .
+
         private IAccountService _accountService;
         private IReferenceService _referenceService;
         private ISettingService _settingService;
         private IUserService _userService;
+
+        #endregion
 
         #region Public Properties                   .
 

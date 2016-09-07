@@ -21,14 +21,14 @@ namespace Ugroop.API.SQL.Controllers {
         [HttpGet]
         public HttpResponseMessage ValidateUser(string username, string password) {
             return new HttpResponseMessage {
-                Content = new StringContent(AccountService.ValidateUser(username, password).JsonSerialize())
+                Content = new StringContent(UserService.ValidateUser(username, password).JsonSerialize())
             };
         }
 
         #region ACCOUNT                     .
 
         ///<summary>
-        ///POST : Get Account By Id
+        ///POST : Get Account By Id (id)
         ///</summary>
         ///<remarks>
         ///Find Account record by Id.
@@ -158,42 +158,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         #endregion
 
-        #region ACCOUNT INFO                .
-
-        ///<summary>
-        ///POST : Add AccountInfo
-        ///</summary>
-        ///<remarks>
-        ///Add new AccountInfo in database.
-        ///</remarks>
-        [HttpPost]
-        public HttpResponseMessage Add_AccountInfo(JObject jsonData) {
-            var accountInfo = JEntity<Account_Info>.Instance().Get_Entity(jsonData);
-            return new HttpResponseMessage {
-                Content = new StringContent(AccountService.Add(accountInfo).JsonSerialize())
-            };
-        }
-
-
-        ///<summary>
-        ///POST : Get AccountInfo by Id
-        ///</summary>
-        ///<remarks>
-        ///Find AccountInfo record by Id.
-        ///</remarks>
-        [HttpPost]
-        public HttpResponseMessage Get_AccountInfoById(JObject jsonData) {
-            var idAccount = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
-            return new HttpResponseMessage {
-                Content = new StringContent(AccountService.Get_AccountByAccountId(idAccount).JsonSerialize())
-            };
-        }
-
-
-
-
-
-        #endregion
+        
 
     }
 

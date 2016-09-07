@@ -12,7 +12,7 @@ namespace Ugroop.API.SQL.Helper.Filter {
     public class UserSessionFilter : ActionFilterAttribute {
 
         private string UserSessionKey;
-        private IAccountService _accountService;
+        private IUserService _userService;
 
         public override void OnActionExecuting(HttpActionContext actionContext) {
             UserSessionKey = string.Empty;
@@ -34,9 +34,9 @@ namespace Ugroop.API.SQL.Helper.Filter {
             }
 
             var baseController = ((BaseController)actionContext.ControllerContext.Controller);
-            _accountService = baseController.AccountService;
+            _userService = baseController.UserService;
 
-            var result = !string.IsNullOrEmpty(UserSessionKey) ? _accountService.Validate_UserSession(UserSessionKey) : true;
+            var result = !string.IsNullOrEmpty(UserSessionKey) ? _userService.Validate_UserSession(UserSessionKey) : true;
             if (result == false) {
                 var response = actionContext.Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Invalid User Session.");
                 actionContext.Response = response;

@@ -130,7 +130,7 @@
 
     function Get_UserSessionToken() {
 
-        var baseUrl = "http://10.29.7.3/uGroopAPI/";
+        var baseUrl = "http://PROJX-WIN/uGroopAPI/";
         var userid = "robert.valdoria@ugroop.com.au";
         var pass = "Aa34567*";
         //var pass = "Aa34567(";
@@ -142,9 +142,9 @@
             type: "GET",
             //data: { UserSessionKey: sessID, username: userid, password: pass },
             data: { username: userid, password: pass },
-            url: "/user/ValidateUser",
+            //url: "/user/ValidateUser",
             //url: "http://localhost/ugAPI/user/ValidateUser",
-            //url: baseUrl + "user/ValidateUser",
+            url: baseUrl + "user/ValidateUser",
             contentType: "application/json",
             dataType: 'json',
         }).done(function (res) {

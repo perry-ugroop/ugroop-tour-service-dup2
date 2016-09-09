@@ -107,8 +107,6 @@ namespace Ugroop.API.SQL.Controllers
         #region SYS PERMISSION                   .
 
 
-
-
         #endregion
 
     }

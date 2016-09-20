@@ -8,9 +8,11 @@
         //ParseX();
         //ParseBBB();
 
-        Get_UserSessionToken();
+        //Get_AllAccount();
 
-        //Insert_Account();
+        //Get_UserSessionToken();
+
+        Insert_Account();
 
         //Get_AccountById();
 
@@ -28,7 +30,7 @@
             type: 'get',
             success: function (data) {
                 var items = JSON.parse(data);
-              
+
                 $.each(items, function (item, value) {
                     $("#divTest").append(item + ' : ' + value + ' / ');
                 });
@@ -59,11 +61,11 @@
 
     function Insert_Account() {
 
-        var sessID = "f2a7a6d928844179a4023826ea47fa80";
+        var sessID = "4a78a2b11923425cbe695a891b561906";
 
         var model = {
             AccountRoleID: 1,
-            AccountEmail : "robert.valdoria@ugroop.com.auYYY",
+            AccountEmail : "robert.valdoria@ugroop.com.auCCC",
             AccountPassword: "55e5802ad7a473a194f2fa049875850a",
             ActivationCode: "12345",
             ActivationDate: "2016-03-01 22:43:09.340",
@@ -71,7 +73,7 @@
             isActive: 'true',
         };
 
- 
+
         $.ajax({
             type: "POST",
             data: JSON.stringify({ UserSessionKey: sessID, Account : model }),
@@ -89,7 +91,7 @@
     function Get_AccountById() {
 
         var Id = "33";
-        var sessID = "a274160317b54c4c97b22b5e9cfdcfc6";
+        var sessID = "6c36715eac614058bca2c7055b17f6ad";
 
         $.ajax({
             //type: "GET",
@@ -130,10 +132,10 @@
 
     function Get_UserSessionToken() {
 
-        var baseUrl = "http://PROJX-WIN/uGroopAPI/";
+        alert('Hi');
+
         var userid = "robert.valdoria@ugroop.com.au";
-        var pass = "Aa34567*";
-        //var pass = "Aa34567(";
+        var pass = "Aa34567(";
         //var sessID = "954b02d5849345f9860966689275a54b";
 
         //alert(pass);
@@ -142,18 +144,19 @@
             type: "GET",
             //data: { UserSessionKey: sessID, username: userid, password: pass },
             data: { username: userid, password: pass },
-            //url: "/user/ValidateUser",
+            url: "/user/ValidateUser",
+            //url: "http://localhost:46033/user/ValidateUser",
             //url: "http://localhost/ugAPI/user/ValidateUser",
-            url: baseUrl + "user/ValidateUser",
             contentType: "application/json",
             dataType: 'json',
+            //async : true,
         }).done(function (res) {
             alert(res);
             //obj = JSON.parse(res);
             //alert(obj.AccountEmail);
         });
 
-            
+
     }
 
     function Update_Account() {
@@ -197,7 +200,6 @@
         $.ajax({
             type: "POST",
             data: JSON.stringify({ UserSessionKey: sessID, username: aaa, pass: bbb }),
-            //data: JSON.stringify({ username: aaa, pass: bbb }),
             url: "/user/LogUser",
             contentType: "application/json",
             dataType: 'json',
@@ -211,11 +213,35 @@
 
     }
 
+    function Get_AllAccount() {
+
+        var Id = "33";
+        var sessID = "4a78a2b11923425cbe695a891b561906";
+
+        alert('sessID');
+
+        $.ajax({
+            //type: "GET",
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID }),
+            url: "/user/Get_AllAccounts",
+            contentType: "application/json",
+            dataType: 'json',
+            async: true,
+        }).done(function (res) {
+            alert(res);
+            //obj = JSON.parse(res);
+            //alert(obj.AccountEmail);
+
+            //alert(res.AccountEmail);
+        });
+
+    }
 
 </script>
-
 
 <div id="divTest">
 
 
 </div>
+

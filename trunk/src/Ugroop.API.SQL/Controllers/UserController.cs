@@ -2,12 +2,14 @@
 using System;
 using System.Net.Http;
 using System.Web.Http;
+using Ugroop.API.SQL.Helper.Filter;
 using Ugroop.API.SQL.Helper.Json;
 using UGroopData.Sql.Repository.Data;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 
 namespace Ugroop.API.SQL.Controllers {
 
+    [ApiExceptionFilter]
     public class UserController : SecurityController {
 
         public UserController(IAccountService accountService, IUserService userService) : base(accountService, userService) { }

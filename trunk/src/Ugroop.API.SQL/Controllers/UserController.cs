@@ -51,6 +51,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_Account(JObject jsonData) {
+        //public HttpResponseMessage Add_Account(JObject jsonData) {
             var account = JEntity<Account>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(UserService.Add(account).JsonSerialize())

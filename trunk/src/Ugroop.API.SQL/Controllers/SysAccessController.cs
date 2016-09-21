@@ -1,16 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Ugroop.API.SQL.Helper.Json;
 using UGroopData.Sql.Repository.Data;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 
-namespace Ugroop.API.SQL.Controllers
-{
+namespace Ugroop.API.SQL.Controllers {
     public class SysAccessController : SecurityController {
 
         public SysAccessController(IUserService userService, ISysAccessService sysAccessService) : base(userService, sysAccessService) { }
@@ -102,7 +98,6 @@ namespace Ugroop.API.SQL.Controllers
         }
 
         #endregion
-
 
         #region SYS PERMISSION                   .
 

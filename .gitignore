@@ -1,0 +1,5 @@
+**/*.suo
+**/applicationhost.config
+**/bin/
+**/obj/
+

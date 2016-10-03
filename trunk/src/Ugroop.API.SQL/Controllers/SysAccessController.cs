@@ -20,7 +20,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///Add new Sys_Page in database.
         ///</remarks>
         [HttpPost]
-        public HttpResponseMessage Add_AccountInfo(JObject jsonData) {
+        public HttpResponseMessage Add_SysPage(JObject jsonData) {
             var sysPage = JEntity<Sys_Page>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SysAccessService.Add(sysPage).JsonSerialize())
@@ -34,7 +34,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///Update Sys_Page in database.
         ///</remarks>
         [HttpPost]
-        public HttpResponseMessage Update_AccountInfo(JObject jsonData) {
+        public HttpResponseMessage Update_SysPage(JObject jsonData) {
             var sysPage = JEntity<Sys_Page>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SysAccessService.Update(sysPage).JsonSerialize())
@@ -100,6 +100,40 @@ namespace Ugroop.API.SQL.Controllers {
         #endregion
 
         #region SYS PERMISSION                   .
+
+
+        ///<summary>
+        ///POST : Add Sys_Permission
+        ///</summary>
+        ///<remarks>
+        ///Add new Sys_Permission in database.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage Add_SysPermission(JObject jsonData) {
+            var sysPage = JEntity<Sys_Persmission>.Instance().Get_Entity(jsonData);
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Add(sysPage).JsonSerialize())
+            };
+        }
+
+
+        ///<summary>
+        ///POST : Update Sys_Permission
+        ///</summary>
+        ///<remarks>
+        ///Update Sys_Permission in database.
+        ///</remarks>
+        [HttpPost]
+        public HttpResponseMessage Update_SysPermission(JObject jsonData) {
+            var sysPage = JEntity<Sys_Persmission>.Instance().Get_Entity(jsonData);
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Update(sysPage).JsonSerialize())
+            };
+        }
+
+
+
+
 
 
         #endregion

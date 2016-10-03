@@ -1,0 +1,6 @@
+**/*.suo
+**/applicationhost.config
+**/bin/
+**/obj/
+trunk/src/packages/
+

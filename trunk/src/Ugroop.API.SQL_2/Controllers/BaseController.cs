@@ -12,6 +12,7 @@ namespace Ugroop.API.SQL.Controllers {
         private ISettingService _settingService;
         private IUserService _userService;
         private ISysAccessService _sysAccessService;
+        private ITourService _tourService;
 
         #endregion
 
@@ -37,6 +38,10 @@ namespace Ugroop.API.SQL.Controllers {
             get { return _sysAccessService; }
         }
 
+        public ITourService TourService {
+            get { return _tourService; }
+        }
+
         #endregion
 
         public BaseController(IAccountService accountService) {
@@ -53,9 +58,19 @@ namespace Ugroop.API.SQL.Controllers {
             _userService = userService;
         }
 
-        public BaseController(IAccountService accountService, IReferenceService referenceService) {
-            _accountService = accountService;
+        public BaseController(IUserService userService, IReferenceService referenceService) {
+            _userService = userService;
             _referenceService = referenceService;
+        }
+
+        public BaseController(IUserService userService, ISettingService settingService) {
+            _userService = userService;
+            _settingService = settingService;
+        }
+
+        public BaseController(IUserService userService, ITourService tourService) {
+            _userService = userService;
+            _tourService = tourService;
         }
 
         public BaseController(IAccountService accountService, IReferenceService referenceService, ISettingService settingService) {

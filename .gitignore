@@ -4,3 +4,5 @@
 **/obj/
 trunk/src/packages/
 
+/trunk/src/.vs
+/trunk/src/.vs/config/*.config

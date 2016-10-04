@@ -26,6 +26,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 		Libraries\UGroopData.Entity.dll = Libraries\UGroopData.Entity.dll
 		Libraries\UGroopData.Mongo.Repository.dll = Libraries\UGroopData.Mongo.Repository.dll
 		Libraries\UGroopData.Mongo.Service.UGroopWeb.dll = Libraries\UGroopData.Mongo.Service.UGroopWeb.dll
+		Libraries\UGroopData.PostgreSql.Repository.dll = Libraries\UGroopData.PostgreSql.Repository.dll
+		Libraries\UGroopData.PostgreSql.Service.UGroopWeb.dll = Libraries\UGroopData.PostgreSql.Service.UGroopWeb.dll
+		Libraries\UGroopData.Sql.Repository.dll = Libraries\UGroopData.Sql.Repository.dll
+		Libraries\UGroopData.Sql.Repository2.dll = Libraries\UGroopData.Sql.Repository2.dll
+		Libraries\UGroopData.Sql.Service.UGroopWeb.dll = Libraries\UGroopData.Sql.Service.UGroopWeb.dll
+		Libraries\UGroopData.Sql.Service2.UGroopWeb.dll = Libraries\UGroopData.Sql.Service2.UGroopWeb.dll
+		Libraries\UGroopData.Utilities.dll = Libraries\UGroopData.Utilities.dll
 	EndProjectSection
 EndProject
 Global

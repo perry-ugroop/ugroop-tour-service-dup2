@@ -3,6 +3,7 @@
 **/bin/
 **/obj/
 trunk/src/packages/
+**/*.user
 
 /trunk/src/.vs
 /trunk/src/.vs/config/*.config

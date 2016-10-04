@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Test", "Ugroop.API.Test\Ugroop.API.Test.csproj", "{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDB", "MongoDB", "{C64FF3F4-9C87-462F-A261-C53FA9090DAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQLServer", "SQLServer", "{E36B65E2-BCDF-4178-9C9E-2E89C236C847}"
@@ -35,16 +33,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 		Libraries\UGroopData.Utilities.dll = Libraries\UGroopData.Utilities.dll
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D8FD78AB-24B4-4D15-98B3-A63054AFBBD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Tests", "Ugroop.API.Tests\Ugroop.API.Tests\Ugroop.API.Tests.csproj", "{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,15 +57,19 @@ Global
 		{89797E00-2190-44BA-BB65-D4520BDB0119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89797E00-2190-44BA-BB65-D4520BDB0119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89797E00-2190-44BA-BB65-D4520BDB0119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{3AE88C5F-779E-4DEC-B669-64E00AB9D0AE} = {C64FF3F4-9C87-462F-A261-C53FA9090DAE}
 		{23E9B5A0-9761-4937-8276-63E88D7EAAD5} = {E36B65E2-BCDF-4178-9C9E-2E89C236C847}
 		{AECF94F9-81C3-4AF3-83BA-926B18FAE569} = {C64FF3F4-9C87-462F-A261-C53FA9090DAE}
 		{8DA57665-E1DE-4C65-883F-EE1ED5C559E0} = {E70AA033-1293-4514-9E56-90EC69846BCC}
 		{89797E00-2190-44BA-BB65-D4520BDB0119} = {E36B65E2-BCDF-4178-9C9E-2E89C236C847}
+		{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51} = {D8FD78AB-24B4-4D15-98B3-A63054AFBBD5}
 	EndGlobalSection
 EndGlobal

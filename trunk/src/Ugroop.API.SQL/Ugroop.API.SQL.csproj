@@ -144,13 +144,13 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Entity">
-      <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Entity.dll</HintPath>
+      <HintPath>..\Libraries\UGroopData.Entity.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Repository">
-      <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Sql.Repository.dll</HintPath>
+      <HintPath>..\Libraries\UGroopData.Sql.Repository.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Service.UGroopWeb">
-      <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
+      <HintPath>..\Libraries\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Utilities">
       <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Utilities.dll</HintPath>

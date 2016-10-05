@@ -19,20 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.SQL_2", "Ugroop.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44F59C85-815F-47FA-BE82-581F24D73154}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{13856185-EC71-475D-A4EA-7B7FA7A909C2}"
-	ProjectSection(SolutionItems) = preProject
-		Libraries\UGroopData.Entity.dll = Libraries\UGroopData.Entity.dll
-		Libraries\UGroopData.Mongo.Repository.dll = Libraries\UGroopData.Mongo.Repository.dll
-		Libraries\UGroopData.Mongo.Service.UGroopWeb.dll = Libraries\UGroopData.Mongo.Service.UGroopWeb.dll
-		Libraries\UGroopData.PostgreSql.Repository.dll = Libraries\UGroopData.PostgreSql.Repository.dll
-		Libraries\UGroopData.PostgreSql.Service.UGroopWeb.dll = Libraries\UGroopData.PostgreSql.Service.UGroopWeb.dll
-		Libraries\UGroopData.Sql.Repository.dll = Libraries\UGroopData.Sql.Repository.dll
-		Libraries\UGroopData.Sql.Repository2.dll = Libraries\UGroopData.Sql.Repository2.dll
-		Libraries\UGroopData.Sql.Service.UGroopWeb.dll = Libraries\UGroopData.Sql.Service.UGroopWeb.dll
-		Libraries\UGroopData.Sql.Service2.UGroopWeb.dll = Libraries\UGroopData.Sql.Service2.UGroopWeb.dll
-		Libraries\UGroopData.Utilities.dll = Libraries\UGroopData.Utilities.dll
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D8FD78AB-24B4-4D15-98B3-A63054AFBBD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Tests", "Ugroop.API.Tests\Ugroop.API.Tests\Ugroop.API.Tests.csproj", "{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}"

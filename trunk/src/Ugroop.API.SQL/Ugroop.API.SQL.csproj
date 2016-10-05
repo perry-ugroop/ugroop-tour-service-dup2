@@ -144,13 +144,13 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Entity">
-      <HintPath>..\Libraries\UGroopData.Entity.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Entity.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Repository">
-      <HintPath>..\Libraries\UGroopData.Sql.Repository.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Sql.Repository.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Sql.Service.UGroopWeb">
-      <HintPath>..\Libraries\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Sql.Service.UGroopWeb.dll</HintPath>
     </Reference>
     <Reference Include="UGroopData.Utilities">
       <HintPath>..\..\..\..\..\..\..\WEB_API\DLL\DataLayer\UGroopData.Utilities.dll</HintPath>
@@ -181,10 +181,13 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
     <Compile Include="Controllers\SysAccessController.cs" />
+    <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

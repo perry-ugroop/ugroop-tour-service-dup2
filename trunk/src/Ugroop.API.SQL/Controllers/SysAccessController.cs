@@ -132,9 +132,69 @@ namespace Ugroop.API.SQL.Controllers {
         }
 
 
+        [HttpPost]
+        public HttpResponseMessage Get_AllSysPermission(JObject jsonData) {
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_AllSysPermission().JsonSerialize())
+            };
+        }
 
 
+        [HttpPost]
+        public HttpResponseMessage Get_SysPermissionByRole(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_SysPermissionByRole(id).JsonSerialize())
+            };
+        }
 
+
+        [HttpPost]
+        public HttpResponseMessage Get_SysPermissionById(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_SysPermissionById(id).JsonSerialize())
+            };
+        }
+
+
+        [HttpPost]
+        public HttpResponseMessage Get_SysPermissionByPageId(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_SysPermissionByPageId(id).JsonSerialize())
+            };
+        }
+
+
+        [HttpPost]
+        public HttpResponseMessage Get_SysPermissionByPageIdActive(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
+            bool active = Convert.ToBoolean(JsonData.Instance(jsonData).Get_JsonObject("active"));
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_SysPermissionByPageId(id, active).JsonSerialize())
+            };
+        }
+
+
+        [HttpPost]
+        public HttpResponseMessage Get_UserAccessListByRole(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_UserAccessListByRole(id).JsonSerialize())
+            };
+        }
+
+
+        [HttpPost]
+        public HttpResponseMessage Get_UserAccessByPage(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
+            string pageName = JsonData.Instance(jsonData).Get_JsonObject("page").ToString();
+            string groupName = JsonData.Instance(jsonData).Get_JsonObject("group").ToString();
+            return new HttpResponseMessage {
+                Content = new StringContent(SysAccessService.Get_UserAccessByPage(id, pageName, groupName).JsonSerialize())
+            };
+        }
 
         #endregion
 

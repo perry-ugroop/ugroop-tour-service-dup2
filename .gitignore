@@ -1,9 +1,11 @@
 **/*.suo
 **/applicationhost.config
-**/bin/
+**/bin/*.*
+!**/bin/UGroop*.dll
+!**/bin/Ugroop*.dll
 **/obj/
-trunk/src/packages/
+**/packages/
 **/*.user
+**/.vs
+**/.vs/config/*.config
 
-/trunk/src/.vs
-/trunk/src/.vs/config/*.config

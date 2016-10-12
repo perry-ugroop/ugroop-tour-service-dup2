@@ -1,6 +1,9 @@
 **/*.suo
 **/applicationhost.config
 **/bin/*.*
+**/bin/roslyn/
+**/bin/Debug/
+**/bin/Release/
 !**/bin/UGroop*.dll
 !**/bin/Ugroop*.dll
 **/obj/

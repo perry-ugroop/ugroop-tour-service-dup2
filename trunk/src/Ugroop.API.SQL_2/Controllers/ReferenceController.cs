@@ -45,7 +45,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///POST : Get_AllTimeZones
         ///</summary>
         ///<remarks>
-        ///Returns list of TimeZones<Sys_Page>.
+        ///Returns list of TimeZones<SysPage>.
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Get_AllSysPages(JObject jsonData) {
@@ -76,7 +76,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_TourActivityType(JObject jsonData) {
-            var activityType = JEntity<Tour_ActivityType>.Instance().Get_Entity(jsonData);
+            var activityType = JEntity<TourActivityType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(activityType).JsonSerialize())
             };
@@ -84,7 +84,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_TourActivityType(JObject jsonData) {
-            var activityType = JEntity<Tour_ActivityType>.Instance().Get_Entity(jsonData);
+            var activityType = JEntity<TourActivityType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(activityType).JsonSerialize())
             };
@@ -114,7 +114,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_MeetingActivityType(JObject jsonData) {
-            var activityType = JEntity<Tour_MeetingActivityType>.Instance().Get_Entity(jsonData);
+            var activityType = JEntity<TourMeetingActivityType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(activityType).JsonSerialize())
             };
@@ -122,7 +122,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_MeetingActivityType(JObject jsonData) {
-            var activityType = JEntity<Tour_MeetingActivityType>.Instance().Get_Entity(jsonData);
+            var activityType = JEntity<TourMeetingActivityType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(activityType).JsonSerialize())
             };
@@ -150,7 +150,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_TourDirectionType(JObject jsonData) {
-            var directionType = JEntity<Tour_DirectionType>.Instance().Get_Entity(jsonData);
+            var directionType = JEntity<TourDirectionType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(directionType).JsonSerialize())
             };
@@ -158,7 +158,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_TourDirectionType(JObject jsonData) {
-            var directionType = JEntity<Tour_DirectionType>.Instance().Get_Entity(jsonData);
+            var directionType = JEntity<TourDirectionType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(directionType).JsonSerialize())
             };
@@ -320,7 +320,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_AccountSchoolType(JObject jsonData) {
-            var accountSchoolType = JEntity<Account_SchoolType>.Instance().Get_Entity(jsonData);
+            var accountSchoolType = JEntity<AccountSchoolType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(accountSchoolType).JsonSerialize())
             };
@@ -328,7 +328,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_AccountSchoolType(JObject jsonData) {
-            var accountSchoolType = JEntity<Account_SchoolType>.Instance().Get_Entity(jsonData);
+            var accountSchoolType = JEntity<AccountSchoolType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(accountSchoolType).JsonSerialize())
             };
@@ -355,7 +355,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SchoolPosition(JObject jsonData) {
-            var position = JEntity<Account_SchoolType>.Instance().Get_Entity(jsonData);
+            var position = JEntity<AccountSchoolType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(position).JsonSerialize())
             };
@@ -363,7 +363,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SchoolPosition(JObject jsonData) {
-            var position = JEntity<Account_SchoolType>.Instance().Get_Entity(jsonData);
+            var position = JEntity<AccountSchoolType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(position).JsonSerialize())
             };
@@ -390,7 +390,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_AccountInfoTitle(JObject jsonData) {
-            var accountInfoTitle = JEntity<Account_InfoTitle>.Instance().Get_Entity(jsonData);
+            var accountInfoTitle = JEntity<AccountInfoTitle>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(accountInfoTitle).JsonSerialize())
             };
@@ -398,7 +398,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_AccountInfoTitle(JObject jsonData) {
-            var accountInfoTitle = JEntity<Account_InfoTitle>.Instance().Get_Entity(jsonData);
+            var accountInfoTitle = JEntity<AccountInfoTitle>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(accountInfoTitle).JsonSerialize())
             };
@@ -486,7 +486,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingBillingPlan(JObject jsonData) {
-            var billingPlan = JEntity<Setting_Billing_Plan>.Instance().Get_Entity(jsonData);
+            var billingPlan = JEntity<SettingBilling_Plan>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(billingPlan).JsonSerialize())
             };
@@ -494,7 +494,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingBillingPlan(JObject jsonData) {
-            var billingPlan = JEntity<Setting_Billing_Plan>.Instance().Get_Entity(jsonData);
+            var billingPlan = JEntity<SettingBilling_Plan>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(billingPlan).JsonSerialize())
             };
@@ -521,7 +521,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingBillingRenewalCharge(JObject jsonData) {
-            var billingCharge = JEntity<Setting_Billing_RenewalCharge>.Instance().Get_Entity(jsonData);
+            var billingCharge = JEntity<SettingBilling_RenewalCharge>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(billingCharge).JsonSerialize())
             };
@@ -529,7 +529,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingBillingRenewalCharge(JObject jsonData) {
-            var billingCharge = JEntity<Setting_Billing_RenewalCharge>.Instance().Get_Entity(jsonData);
+            var billingCharge = JEntity<SettingBilling_RenewalCharge>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(billingCharge).JsonSerialize())
             };
@@ -556,7 +556,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingCreditCardType(JObject jsonData) {
-            var ccType = JEntity<Setting_CreditCardType>.Instance().Get_Entity(jsonData);
+            var ccType = JEntity<SettingCreditCardType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Add(ccType).JsonSerialize())
             };
@@ -564,7 +564,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingCreditCardType(JObject jsonData) {
-            var ccType = JEntity<Setting_CreditCardType>.Instance().Get_Entity(jsonData);
+            var ccType = JEntity<SettingCreditCardType>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(ReferenceService.Update(ccType).JsonSerialize())
             };

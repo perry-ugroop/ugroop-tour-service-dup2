@@ -21,7 +21,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_SysPage(JObject jsonData) {
-            var sysPage = JEntity<Sys_Page>.Instance().Get_Entity(jsonData);
+            var sysPage = JEntity<SysPage>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SysAccessService.Add(sysPage).JsonSerialize())
             };
@@ -35,7 +35,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_SysPage(JObject jsonData) {
-            var sysPage = JEntity<Sys_Page>.Instance().Get_Entity(jsonData);
+            var sysPage = JEntity<SysPage>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SysAccessService.Update(sysPage).JsonSerialize())
             };
@@ -45,7 +45,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///POST : Get_AllSysPages
         ///</summary>
         ///<remarks>
-        ///Returns all List<Sys_Page>.
+        ///Returns all List<SysPage>.
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Get_AllSysPages(JObject jsonData) {
@@ -110,7 +110,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_SysPermission(JObject jsonData) {
-            var sysPage = JEntity<Sys_Persmission>.Instance().Get_Entity(jsonData);
+            var sysPage = JEntity<SysPersmission>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SysAccessService.Add(sysPage).JsonSerialize())
             };
@@ -125,7 +125,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_SysPermission(JObject jsonData) {
-            var sysPage = JEntity<Sys_Persmission>.Instance().Get_Entity(jsonData);
+            var sysPage = JEntity<SysPersmission>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SysAccessService.Update(sysPage).JsonSerialize())
             };

@@ -21,7 +21,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_AccountInfo(JObject jsonData) {
-            var accountInfo = JEntity<Account_Info>.Instance().Get_Entity(jsonData);
+            var accountInfo = JEntity<AccountInfo>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Add(accountInfo).JsonSerialize())
             };
@@ -35,7 +35,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_AccountInfo(JObject jsonData) {
-            var accountInfo = JEntity<Account_Info>.Instance().Get_Entity(jsonData);
+            var accountInfo = JEntity<AccountInfo>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Update(accountInfo).JsonSerialize())
             };
@@ -67,7 +67,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_AccountSchool(JObject jsonData) {
-            var accountSchool = JEntity<Account_School>.Instance().Get_Entity(jsonData);
+            var accountSchool = JEntity<AccountSchool>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Add(accountSchool).JsonSerialize())
             };
@@ -81,7 +81,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_AccountSchool(JObject jsonData) {
-            var accountSchool = JEntity<Account_School>.Instance().Get_Entity(jsonData);
+            var accountSchool = JEntity<AccountSchool>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Update(accountSchool).JsonSerialize())
             };
@@ -116,7 +116,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_AccountMedical(JObject jsonData) {
-            var accountMedical = JEntity<Account_Medical>.Instance().Get_Entity(jsonData);
+            var accountMedical = JEntity<AccountMedical>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Add(accountMedical).JsonSerialize())
             };
@@ -130,7 +130,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_AccountMedical(JObject jsonData) {
-            var accountMedical = JEntity<Account_Medical>.Instance().Get_Entity(jsonData);
+            var accountMedical = JEntity<AccountMedical>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Update(accountMedical).JsonSerialize())
             };
@@ -162,7 +162,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_AccountMedicalNotes(JObject jsonData) {
-            var accountMedicalNotes = JEntity<Account_MedicalNotes>.Instance().Get_Entity(jsonData);
+            var accountMedicalNotes = JEntity<AccountMedicalNotes>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Add(accountMedicalNotes).JsonSerialize())
             };
@@ -176,7 +176,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_AccountMedicalNotes(JObject jsonData) {
-            var accountMedicalNotes = JEntity<Account_Medical>.Instance().Get_Entity(jsonData);
+            var accountMedicalNotes = JEntity<AccountMedical>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Update(accountMedicalNotes).JsonSerialize())
             };
@@ -208,7 +208,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_TravelDocument(JObject jsonData) {
-            var travelDocument = JEntity<Account_Travel_Document>.Instance().Get_Entity(jsonData);
+            var travelDocument = JEntity<AccountTravelDocument>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Add(travelDocument).JsonSerialize())
             };
@@ -222,7 +222,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_TravelDocument(JObject jsonData) {
-            var travelDocument = JEntity<Account_Travel_Document>.Instance().Get_Entity(jsonData);
+            var travelDocument = JEntity<AccountTravelDocument>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Update(travelDocument).JsonSerialize())
             };
@@ -297,7 +297,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Add_AccountRelative(JObject jsonData) {
-            var relative = JEntity<Account_Relative>.Instance().Get_Entity(jsonData);
+            var relative = JEntity<AccountRelative>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Add(relative).JsonSerialize())
             };
@@ -311,7 +311,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Update_AccountRelative(JObject jsonData) {
-            var relative = JEntity<Account_Relative>.Instance().Get_Entity(jsonData);
+            var relative = JEntity<AccountRelative>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(AccountService.Update(relative).JsonSerialize())
             };
@@ -321,7 +321,7 @@ namespace Ugroop.API.SQL.Controllers {
         ///POST : Get_AllAccountRelativeByAccountId (id)
         ///</summary>
         ///<remarks>
-        ///Returns List<Account_Relative> By AccountId.
+        ///Returns List<AccountRelative> By AccountId.
         ///</remarks>
         [HttpPost]
         public HttpResponseMessage Get_AllAccountRelativeByAccountId(JObject jsonData) {

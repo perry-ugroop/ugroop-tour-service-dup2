@@ -15,7 +15,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingAboutYou(JObject jsonData) {
-            var aboutyou = JEntity<Setting_Aboutyou>.Instance().Get_Entity(jsonData);
+            var aboutyou = JEntity<SettingAboutyou>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Add(aboutyou).JsonSerialize())
             };
@@ -23,7 +23,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingAboutYou(JObject jsonData) {
-            var aboutyou = JEntity<Setting_Aboutyou>.Instance().Get_Entity(jsonData);
+            var aboutyou = JEntity<SettingAboutyou>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Update(aboutyou).JsonSerialize())
             };
@@ -51,7 +51,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingPublishing(JObject jsonData) {
-            var publishing = JEntity<Setting_Publishing>.Instance().Get_Entity(jsonData);
+            var publishing = JEntity<SettingPublishing>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Add(publishing).JsonSerialize())
             };
@@ -59,7 +59,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingPublishing(JObject jsonData) {
-            var publishing = JEntity<Setting_Publishing>.Instance().Get_Entity(jsonData);
+            var publishing = JEntity<SettingPublishing>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Update(publishing).JsonSerialize())
             };
@@ -90,7 +90,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingEmail(JObject jsonData) {
-            var email = JEntity<Setting_Email>.Instance().Get_Entity(jsonData);
+            var email = JEntity<SettingEmail>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Add(email).JsonSerialize())
             };
@@ -98,7 +98,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingEmail(JObject jsonData) {
-            var email = JEntity<Setting_Email>.Instance().Get_Entity(jsonData);
+            var email = JEntity<SettingEmail>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Update(email).JsonSerialize())
             };
@@ -181,7 +181,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingYourProfile(JObject jsonData) {
-            var profile = JEntity<Setting_YourProfile>.Instance().Get_Entity(jsonData);
+            var profile = JEntity<SettingYourProfile>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Add(profile).JsonSerialize())
             };
@@ -189,7 +189,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingYourProfile(JObject jsonData) {
-            var profile = JEntity<Setting_YourProfile>.Instance().Get_Entity(jsonData);
+            var profile = JEntity<SettingYourProfile>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Update(profile).JsonSerialize())
             };
@@ -217,7 +217,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Add_SettingBilling(JObject jsonData) {
-            var billing = JEntity<Setting_Billing>.Instance().Get_Entity(jsonData);
+            var billing = JEntity<SettingBilling>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Add(billing).JsonSerialize())
             };
@@ -225,7 +225,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         [HttpPost]
         public HttpResponseMessage Update_SettingBilling(JObject jsonData) {
-            var billing = JEntity<Setting_Billing>.Instance().Get_Entity(jsonData);
+            var billing = JEntity<SettingBilling>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent(SettingService.Update(billing).JsonSerialize())
             };

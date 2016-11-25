@@ -287,7 +287,7 @@ namespace Ugroop.API.SQL.Controllers {
         [HttpPost]
         public async Task<HttpResponseMessage> Update_TourLodging(JObject jsonData) {
             var lodging = JEntity<TourLodging_Update>.Instance().Get_Entity(jsonData);
-            return new HttpResponseMessage { 
+            return new HttpResponseMessage {
                 Content = new StringContent((await TourService.Update_AsyncData(lodging)).JsonSerialize())
             };
         }

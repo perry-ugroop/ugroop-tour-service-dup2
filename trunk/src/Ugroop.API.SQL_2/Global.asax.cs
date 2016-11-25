@@ -11,7 +11,8 @@ namespace Ugroop.API.SQL {
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             UnityConfig.RegisterComponents();
-        }
 
+            log4net.Config.XmlConfigurator.Configure();
+        }
     }
 }

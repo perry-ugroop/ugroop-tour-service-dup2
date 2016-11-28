@@ -1,8 +1,6 @@
-﻿using log4net;
-using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
+﻿using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
-using Microsoft.Practices.Unity;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -10,7 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using WebTester.ExceptionHandler;
+using Ugroop.API.SQL.ExceptionHandler;
 
 namespace CustomExceptionLoggingHandler {
     [ConfigurationElementType(typeof(CustomExceptionLoggingHandlerData))]
@@ -21,7 +19,6 @@ namespace CustomExceptionLoggingHandler {
         private readonly string defaultTitle;
         private readonly Type formatterType;
         private readonly int minimumPriority;
-        //private readonly LogWriter logWriter;
         private const string callstack = @"CallStack";
         private const string errormessage = @"ErrorMessage";
         private const string innerexception = @"InnerException";

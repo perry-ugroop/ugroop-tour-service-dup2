@@ -1,15 +1,12 @@
 ﻿using log4net;
 using Microsoft.Practices.EnterpriseLibrary.Logging;
-using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using UGroopData.Sql.Service2.UGroopWeb.Helper.ExceptionHelper;
-using UGroopData.Utilities.String;
+using System.Reflection;
+using System.Threading.Tasks;
 
-namespace WebTester.ExceptionHandler {
+namespace Ugroop.API.SQL.ExceptionHandler {
 
     public class LogInterceptionBehavior : IInterceptionBehavior {
 
@@ -18,25 +15,30 @@ namespace WebTester.ExceptionHandler {
         }
 
         public IMethodReturn Invoke(IMethodInvocation input, GetNextInterceptionBehaviorDelegate getNext) {
-            // Before invoking the method on the original target.
-            LogDebug(string.Format(
-              "Invoking method {0} at {1}",
-              input.MethodBase, DateTime.Now.ToLongTimeString()));
-
-            // Invoke the next behaviour in the chain.
-            var result = getNext()(input, getNext);
-            //   After invoking the method on the original target.
-            if (result.Exception != null) {
-                throw result.Exception;
+            // Execute the rest of the pipeline and get the return value
+            IMethodReturn value = getNext()(input, getNext);
+            // Deal with tasks, if needed
+            var method = input.MethodBase as MethodInfo;
+            if (value.ReturnValue != null && method != null && typeof(Task) == method.ReturnType) {
+                // If this method returns a Task, override the original return value
+                var task = (Task)value.ReturnValue;
+                return input.CreateMethodReturn(CreateWrapperTask(task, input),
+                  value.Outputs);
             }
-            else {
-                LogDebug(string.Format(
-                  "Method {0} returned {1} at {2}",
-                  input.MethodBase, result.ReturnValue,
-                  DateTime.Now.ToLongTimeString()));
-            }
+            return value;
+        }
 
-            return result;
+        private async Task CreateWrapperTask(Task task, IMethodInvocation input) {
+            try {
+                await task.ConfigureAwait(false);
+                //Trace.TraceInformation("Successfully finished async operation {0}",
+                //input.MethodBase.Name);
+            }
+            catch (Exception e) {
+                //Trace.TraceWarning("Async operation {0} threw: {1}",
+                //input.MethodBase.Name, e);
+                throw e;
+            }
         }
 
         public bool WillExecute {
@@ -68,7 +70,7 @@ namespace WebTester.ExceptionHandler {
         }
 
         public static void WriteDebugLog(LogEntry message) {
-            _debugLogger.Debug(message);
+            _debugLogger.Debug(message.ErrorMessages);
         }
 
     }

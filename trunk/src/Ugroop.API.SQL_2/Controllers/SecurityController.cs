@@ -1,4 +1,4 @@
-﻿using Ugroop.API.SQL.Helper.Filter;
+﻿using Ugroop.API.SQL.Filter;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 
 namespace Ugroop.API.SQL.Controllers {

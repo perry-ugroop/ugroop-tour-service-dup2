@@ -3,9 +3,10 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Ugroop.API.SQL.Helper.Json;
+using Ugroop.API.SQL.Filter;
 using UGroopData.Entity.ViewModel.SQL.Data;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
+using UGroopData.Utilities.String;
 
 namespace Ugroop.API.SQL.Controllers {
     public class TourController : SecurityController {
@@ -357,6 +358,23 @@ namespace Ugroop.API.SQL.Controllers {
         }
 
         #endregion
+
+
+        // TEST -> EXCEPTION HANDLER
+
+        //[ExceptionFilterTest]
+        [ApiExceptionFilter]
+        [HttpPost]
+        public virtual async Task<HttpResponseMessage> TEST_Add_Tour_Async(JObject jsonData) {
+
+            //throw new FormatException("this is a sample exception...");
+
+            var tour = JEntity<Tour_Insert>.Instance().Get_Entity(jsonData);
+            return new HttpResponseMessage {
+                Content = new StringContent((await TourService.Add_AsyncData(tour)).JsonSerialize())
+            };
+        }
+
 
 
     }

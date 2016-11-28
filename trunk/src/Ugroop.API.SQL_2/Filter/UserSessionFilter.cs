@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Ugroop.API.SQL.Controllers;
-using Ugroop.API.SQL.Helper.Json;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
+using UGroopData.Utilities.String;
 
-namespace Ugroop.API.SQL.Helper.Filter {
+namespace Ugroop.API.SQL.Filter {
     public class UserSessionFilter : ActionFilterAttribute {
 
         private string UserSessionKey;

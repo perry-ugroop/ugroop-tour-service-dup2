@@ -5,8 +5,8 @@
 <script>
 
     $(document).ready(function () {
-        //ParseX();
-        //ParseBBB();
+
+        Insert_Tour_TEST();
 
         //Get_AllAccount();
 
@@ -22,9 +22,43 @@
 
         //Log_User();
 
-        Get_AccountDocumentById();
+        //Get_AccountDocumentById();
 
     });
+
+
+    // TESTING EXCEPTION HANDLER.........    
+
+    function Insert_Tour_TEST() {
+
+        var sessID = "3bf97b5144564655bed008eced1f168e";
+
+        var model = {
+            DestinationCity: "Mars City",
+            EndDate: "2016-12-10 22:43:09.340",
+            OrganizedBy: "3",
+            Photo: "AAA",
+            StartDate: "2016-12-05 22:43:09.340",
+            TourDescription: "AAA",
+            TourName: "A",
+            TourTypeId: "1",
+        };
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify({ UserSessionKey: sessID, Tour_Insert: model }),
+            //data: model,
+            url: "/tour/TEST_Add_Tour_Async",
+            contentType: "application/json",
+            dataType: 'json',
+        }).done(function (res) {
+            //console.log('res', res);
+            // Do something with the result :)
+        });
+
+    }
+
+    // TESTING EXCEPTION HANDLER.........    
 
     function ParseX() {
         $.ajax({

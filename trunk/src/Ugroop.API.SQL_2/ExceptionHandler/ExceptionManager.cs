@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using UGroopData.Utilities.String;
 
-namespace UGroopData.Sql.Service2.UGroopWeb.Helper.ExceptionHelper {
+namespace Ugroop.API.SQL.ExceptionHandler {
 
     public class ExceptionManagerSinglton {
         private static readonly ExceptionManagerSinglton instance = new ExceptionManagerSinglton();
@@ -30,14 +30,9 @@ namespace UGroopData.Sql.Service2.UGroopWeb.Helper.ExceptionHelper {
              {
                 {
                     new ExceptionPolicyEntry(typeof (FormatException),
-                    PostHandlingAction.None,
+                    PostHandlingAction.NotifyRethrow,
                     new IExceptionHandler[]
                     {
-                        //new CustomExceptionLoggingHandler.CustomExceptionLoggingHandler(
-                        //  Error_cate, 1,TraceEventType.Error,
-                        //     "FormatException", 1,
-                        //     typeof(TextExceptionFormatter), Logger.Writer)
-
                         new CustomExceptionLoggingHandler.CustomExceptionLoggingHandler(
                           Error_cate, 1,TraceEventType.Error,
                              "FormatException", 1,
@@ -47,7 +42,7 @@ namespace UGroopData.Sql.Service2.UGroopWeb.Helper.ExceptionHelper {
 
                   {
                     new ExceptionPolicyEntry(typeof (ValidationException),
-                    PostHandlingAction.None,
+                    PostHandlingAction.NotifyRethrow,
                     new IExceptionHandler[]
                     {
                         new CustomExceptionLoggingHandler.CustomExceptionLoggingHandler(

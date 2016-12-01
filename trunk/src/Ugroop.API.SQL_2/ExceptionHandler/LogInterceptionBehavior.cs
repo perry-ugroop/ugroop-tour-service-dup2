@@ -45,34 +45,6 @@ namespace Ugroop.API.SQL.ExceptionHandler {
             get { return true; }
         }
 
-        private void LogDebug(string message) {
-            Console.WriteLine(message);
-        }
-
-    }
-
-    public class LoggerHelper {
-
-        private static readonly ILog _debugLogger;
-
-        private static ILog GetLogger(string logName) {
-            ILog log = LogManager.GetLogger(logName);
-            return log;
-        }
-
-        static LoggerHelper() {
-            //logger names are mentioned in <log4net> section of config file
-            _debugLogger = GetLogger("DebugLoggerName");
-        }
-
-        public static void WriteDebugLog(string message) {
-            _debugLogger.DebugFormat(message);
-        }
-
-        public static void WriteDebugLog(LogEntry message) {
-            _debugLogger.Debug(message.ErrorMessages);
-        }
-
     }
 
 }

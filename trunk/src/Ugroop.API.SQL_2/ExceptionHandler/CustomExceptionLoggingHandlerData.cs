@@ -9,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Ugroop.API.SQL.ExceptionHandler;
+using Ugroop.API.SQL.Helper;
 
 namespace CustomExceptionLoggingHandler {
     [ConfigurationElementType(typeof(CustomExceptionLoggingHandlerData))]
@@ -54,7 +55,7 @@ namespace CustomExceptionLoggingHandler {
                     entry.ExtendedProperties.Add(dataEntry.Key as string, dataEntry.Value);
                 }
             }
-            LoggerHelper.WriteDebugLog(entry.ToString());
+            UGLogger.WriteDebugLog(entry.ToString());
         }
 
         public Exception HandleException(Exception exception, Guid handlingInstanceId) {

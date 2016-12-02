@@ -305,25 +305,8 @@
       <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UGroopData.Entity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\DATA_DLL\UGroopData.Entity.dll</HintPath>
-    </Reference>
-    <Reference Include="UGroopData.Sql.Repository2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\DATA_DLL\UGroopData.Sql.Repository2.dll</HintPath>
-    </Reference>
-    <Reference Include="UGroopData.Sql.Service2.UGroopWeb, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\DATA_DLL\UGroopData.Sql.Service2.UGroopWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="UGroopData.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\DATA_DLL\UGroopData.Utilities.dll</HintPath>
-    </Reference>
-    <Reference Include="UGroopData.Validation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\DATA_DLL\UGroopData.Validation.dll</HintPath>
+    <Reference Include="UGroopData">
+      <HintPath>..\..\..\..\..\..\..\DATA_DLL\INTEGRATED\UGroopData.dll</HintPath>
     </Reference>
     <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>

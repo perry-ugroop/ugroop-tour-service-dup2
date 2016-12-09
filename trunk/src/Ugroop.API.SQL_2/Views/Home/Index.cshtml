@@ -31,29 +31,33 @@
 
     function Insert_Tour_TEST() {
 
-        var sessID = "3bf97b5144564655bed008eced1f168e";
-
         var model = {
             DestinationCity: "Mars City",
-            EndDate: "2016-12-10 22:43:09.340",
             OrganizedBy: "3",
             Photo: "AAA",
-            StartDate: "2016-12-05 22:43:09.340",
             TourDescription: "AAA",
-            TourName: "A",
+            TourName: "AAA",
             TourTypeId: "1",
+            StartDate: "2016-12-20 22:43:09.340",
+            EndDate: "2016-12-30 22:43:09.340",
         };
+
+        var accessToken = "eyJraWQiOiIyRDhMU1NaRERJUkhHU0ZXMkI2VTlNSjVEIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI1WTRyZDFxbUs5NGxuMWlXcW84OUkiLCJpYXQiOjE0ODEyNzM2MzMsImlzcyI6Imh0dHBzOi8vYXBpLnN0b3JtcGF0aC5jb20vdjEvYXBwbGljYXRpb25zLzNmSGNMaDVQNlIySllxMkV4bUhVaXoiLCJzdWIiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FjY291bnRzLzFhWHFGQU9PdXo5cG9tRXNWUTFmanAiLCJleHAiOjE0ODEyNzcyMzMsInJ0aSI6IjVZNHJaaGxyanE2OHh2ckthd3JYRSJ9.wAmaW-zv8UPtinpYjLqKssp3zI66bIwOzzcjjsn3gO8";
+
+        //var accessToken = "XXXraWQiOiIyRDhMU1NaRERJUkhHU0ZXMkI2VTlNSjVEIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIyZjZZbkRXRXJtcnJSdVBXWUlhMFRvIiwiaWF0IjoxNDgxMTg1NzI4LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8zZkhjTGg1UDZSMkpZcTJFeG1IVWl6Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy8xYVhxRkFPT3V6OXBvbUVzVlExZmpwIiwiZXhwIjoxNDgxMTg5MzI4LCJydGkiOiIyZjZZbkFDOXhDWXNwNUpmTTJpanJrIn0.5N1czKk0RAEk5D1Yk2RH3LZOX7xo6xC7V9NX8yHTjSY";
 
         $.ajax({
             type: "POST",
-            data: JSON.stringify({ UserSessionKey: sessID, Tour_Insert: model }),
+            data: JSON.stringify({ Tour_Insert: model }),
             //data: model,
-            url: "/tour/TEST_Add_Tour_Async",
+            url: "/Tour/TEST_Add_Tour_Async",
             contentType: "application/json",
             dataType: 'json',
+            headers: {
+                "Authorization": "Bearer " + accessToken
+            },
         }).done(function (res) {
             //console.log('res', res);
-            // Do something with the result :)
         });
 
     }

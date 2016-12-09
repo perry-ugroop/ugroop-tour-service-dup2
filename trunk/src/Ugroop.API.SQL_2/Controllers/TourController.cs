@@ -9,6 +9,8 @@ using UGroopData.Sql.Service.UGroopWeb.Interface;
 using UGroopData.Utilities.String;
 
 namespace Ugroop.API.SQL.Controllers {
+
+    [ApiExceptionFilter]
     public class TourController : SecurityController {
 
         public TourController(IUserService userService, ITourService tourService) : base(userService, tourService) { }
@@ -360,21 +362,15 @@ namespace Ugroop.API.SQL.Controllers {
         #endregion
 
 
-        // TEST -> EXCEPTION HANDLER
-
-        //[ExceptionFilterTest]
-        [ApiExceptionFilter]
+        // TEST -> EXCEPTION HANDLER / STORMPATH VALIDATION STRATEGY
         [HttpPost]
-        public virtual async Task<HttpResponseMessage> TEST_Add_Tour_Async(JObject jsonData) {
-
+        public async Task<HttpResponseMessage> TEST_Add_Tour_Async(JObject jsonData) {
             //throw new FormatException("this is a sample exception...");
-
             var tour = JEntity<Tour_Insert>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent((await TourService.Add_AsyncData(tour)).JsonSerialize())
             };
         }
-
 
 
     }

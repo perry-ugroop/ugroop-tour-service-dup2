@@ -8,7 +8,6 @@ namespace Ugroop.API.SQL.Filter {
         public override void OnException(HttpActionExecutedContext actionExecutedContext) {
             //Type realReturnType = actionExecutedContext.ActionContext.ActionDescriptor.ReturnType;
             //var realReturnTypeX = actionExecutedContext.ActionContext.ControllerContext;
-
             if (actionExecutedContext.Exception != null) {
                 ExceptionManagerSinglton.Instance.exceptionManager().Process(() => { throw actionExecutedContext.Exception; }
                                                             , AppSettingsConstant.LogReThrowExceptionPolicy);

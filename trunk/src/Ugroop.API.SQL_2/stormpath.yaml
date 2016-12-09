@@ -1,0 +1,12 @@
+﻿---
+application:
+  name: "UGApp"
+web:
+  oauth2:
+    enabled: true
+    uri: "/api/token"
+    password:
+      enabled: true
+      validationStrategy: "stormpath"
+produces:
+    - application/json

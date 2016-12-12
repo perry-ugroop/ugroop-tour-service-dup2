@@ -250,6 +250,7 @@
       <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Interactive.Async, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
       <Private>True</Private>
@@ -406,6 +407,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\StormpathConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
@@ -417,6 +419,14 @@
     <Compile Include="ExceptionHandler\ExceptionManager.cs" />
     <Compile Include="ExceptionHandler\LogInterceptionBehavior.cs" />
     <Compile Include="Filter\ApiExceptionFilter.cs" />
+    <Compile Include="Filter\StormPath\BearerAuthenticationAttribute.cs" />
+    <Compile Include="Filter\StormPath\HttpAuthenticationContextChallengeExtensions.cs" />
+    <Compile Include="Filter\StormPath\Requests\GrantRequest.cs" />
+    <Compile Include="Filter\StormPath\Results\AddChallengeOnUnauthorizedResult.cs" />
+    <Compile Include="Filter\StormPath\Results\AuthenticationFailureResult.cs" />
+    <Compile Include="Filter\StormPath\Results\OAuthBadRequest.cs" />
+    <Compile Include="Filter\StormPath\Results\TokenResult.cs" />
+    <Compile Include="Filter\StormPath\StormpathBearerAuthenticationAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

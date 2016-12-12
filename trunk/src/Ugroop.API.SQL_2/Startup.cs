@@ -1,14 +1,12 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
-using Stormpath.AspNet;
-using Stormpath.Configuration.Abstractions;
 using System.Threading.Tasks;
 using System.Web.Cors;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Ugroop.API.SQL;
+using Ugroop.API.SQL.App_Start;
 
 [assembly: OwinStartup(typeof(Ugroop.API.SQL.Startup))]
 
@@ -33,20 +31,7 @@ namespace Ugroop.API.SQL {
                 }
             };
             app.UseCors(corsOptions);
-
-            // IClient config
-            app.UseStormpath(new StormpathConfiguration {
-                Application = new ApplicationConfiguration {
-                    Href = "https://api.stormpath.com/v1/applications/3fHcLh5P6R2JYq2ExmHUiz"
-                },
-                Client = new ClientConfiguration {
-                    ApiKey = new ClientApiKeyConfiguration {
-                        Id = "2D8LSSZDDIRHGSFW2B6U9MJ5D",
-                        Secret = "smPaqk+n4V4Rvsf5XJ2hfFTNREILLLPEVy23hNXemJw"
-                    }
-                }
-            });
-
+            StormpathConfig.Initialize();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

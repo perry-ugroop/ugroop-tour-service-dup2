@@ -435,6 +435,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\UGroopData.dll" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\WebAPI_Publish.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />

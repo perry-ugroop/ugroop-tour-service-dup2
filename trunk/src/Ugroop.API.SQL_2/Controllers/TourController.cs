@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Ugroop.API.SQL.Filter;
+using Ugroop.API.SQL_2.Helper;
 using UGroopData.Entity.ViewModel.SQL.Data;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 using UGroopData.Utilities.String;
@@ -366,6 +367,7 @@ namespace Ugroop.API.SQL.Controllers {
         [HttpPost]
         public async Task<HttpResponseMessage> TEST_Add_Tour_Async(JObject jsonData) {
             //throw new FormatException("this is a sample exception...");
+            var role = Identity.Role();
             var tour = JEntity<Tour_Insert>.Instance().Get_Entity(jsonData);
             return new HttpResponseMessage {
                 Content = new StringContent((await TourService.Add_AsyncData(tour)).JsonSerialize())

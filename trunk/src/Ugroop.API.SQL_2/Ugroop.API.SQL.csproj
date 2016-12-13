@@ -419,17 +419,17 @@
     <Compile Include="ExceptionHandler\ExceptionManager.cs" />
     <Compile Include="ExceptionHandler\LogInterceptionBehavior.cs" />
     <Compile Include="Filter\ApiExceptionFilter.cs" />
-    <Compile Include="Filter\StormPath\BearerAuthenticationAttribute.cs" />
     <Compile Include="Filter\StormPath\HttpAuthenticationContextChallengeExtensions.cs" />
     <Compile Include="Filter\StormPath\Requests\GrantRequest.cs" />
     <Compile Include="Filter\StormPath\Results\AddChallengeOnUnauthorizedResult.cs" />
     <Compile Include="Filter\StormPath\Results\AuthenticationFailureResult.cs" />
     <Compile Include="Filter\StormPath\Results\OAuthBadRequest.cs" />
     <Compile Include="Filter\StormPath\Results\TokenResult.cs" />
-    <Compile Include="Filter\StormPath\StormpathBearerAuthenticationAttribute.cs" />
+    <Compile Include="Filter\StormPath\StormpathBearerAuthentication.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Identity.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

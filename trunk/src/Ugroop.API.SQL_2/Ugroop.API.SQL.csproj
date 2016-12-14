@@ -419,6 +419,7 @@
     <Compile Include="ExceptionHandler\ExceptionManager.cs" />
     <Compile Include="ExceptionHandler\LogInterceptionBehavior.cs" />
     <Compile Include="Filter\ApiExceptionFilter.cs" />
+    <Compile Include="Filter\MethodAccessFilter.cs" />
     <Compile Include="Filter\StormPath\HttpAuthenticationContextChallengeExtensions.cs" />
     <Compile Include="Filter\StormPath\Requests\GrantRequest.cs" />
     <Compile Include="Filter\StormPath\Results\AddChallengeOnUnauthorizedResult.cs" />
@@ -435,7 +436,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\UGroopData.dll" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\WebAPI_Publish.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />

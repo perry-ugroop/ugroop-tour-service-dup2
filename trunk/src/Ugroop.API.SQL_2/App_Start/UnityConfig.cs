@@ -1,7 +1,10 @@
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.InterceptionExtension;
+using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Filters;
 using Ugroop.API.SQL.ExceptionHandler;
+using Ugroop.API.SQL.Filter;
 using UGroopData.Sql.Repository2.Base;
 using UGroopData.Sql.Repository2.Data;
 using UGroopData.Sql.Service.UGroopWeb.Concrete;
@@ -12,8 +15,11 @@ using Unity.WebApi;
 
 namespace Ugroop.API.SQL {
     public static class UnityConfig {
+
+        static UnityContainer container = new UnityContainer();
+
         public static void RegisterComponents() {
-            var container = new UnityContainer();
+            //var container = new UnityContainer();
 
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<IReferenceService, ReferenceService>();
@@ -39,6 +45,15 @@ namespace Ugroop.API.SQL {
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
 
-    }
+        public static void Register(HttpConfiguration config) {
+            //Register the filter injector
+            var providers = config.Services.GetFilterProviders().ToList();
 
+            var defaultprovider = providers.Single(i => i is ActionDescriptorFilterProvider);
+            config.Services.Remove(typeof(IFilterProvider), defaultprovider);
+
+            config.Services.Add(typeof(IFilterProvider), new UnityFilterProvider(container));
+        }
+
+    }
 }

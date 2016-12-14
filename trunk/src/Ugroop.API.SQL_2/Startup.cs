@@ -37,6 +37,7 @@ namespace Ugroop.API.SQL {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             UnityConfig.RegisterComponents();
+            UnityConfig.Register(GlobalConfiguration.Configuration);
             log4net.Config.XmlConfigurator.Configure();
         }
 

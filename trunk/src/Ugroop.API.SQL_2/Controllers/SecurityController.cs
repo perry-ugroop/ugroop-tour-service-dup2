@@ -7,7 +7,6 @@ namespace Ugroop.API.SQL.Controllers {
 
     [StormpathBearerAuthentication]
     [Authorize]
-    [MethodAccessFilter]
     public class SecurityController : BaseController {
         public SecurityController(IAccountService accountService, IUserService userService) : base(accountService, userService) { }
 

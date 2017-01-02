@@ -73,6 +73,12 @@ namespace Ugroop.API.SQL.Controllers {
             _tourService = tourService;
         }
 
+        public BaseController(IUserService userService, ITourService tourService, ISysAccessService sysAccessService) {
+            _userService = userService;
+            _tourService = tourService;
+            _sysAccessService = sysAccessService;
+        }
+
         public BaseController(IAccountService accountService, IReferenceService referenceService, ISettingService settingService) {
             _accountService = accountService;
             _referenceService = referenceService;

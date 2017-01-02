@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using Stormpath.AspNet.WebApi;
+using System.Web.Http;
 using Ugroop.API.SQL.Filter;
 using Ugroop.API.SQL.Filter.StormPath;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
@@ -17,6 +18,9 @@ namespace Ugroop.API.SQL.Controllers {
         public SecurityController(IUserService userService, ISettingService settingService) : base(userService, settingService) { }
 
         public SecurityController(IUserService userService, ITourService tourService) : base(userService, tourService) { }
+
+        public SecurityController(IUserService userService, ITourService tourService, ISysAccessService sysAccessService) : base(userService, tourService, sysAccessService) { }
+
     }
 
 }

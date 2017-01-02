@@ -384,7 +384,7 @@
     </Reference>
     <Reference Include="UGroopData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\MERGE_DLL\DATA_LAYER\UGroopData.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\DATA_DLL\INTEGRATED\UGroopData.dll</HintPath>
     </Reference>
     <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>
@@ -480,7 +480,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>46013</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:46088/</IISUrl>
+          <IISUrl>http://localhost:46083/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

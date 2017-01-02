@@ -1,6 +1,9 @@
 ﻿using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
+using Stormpath.AspNet;
+using Stormpath.Configuration.Abstractions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Cors;
 using System.Web.Http;
@@ -9,29 +12,67 @@ using System.Web.Routing;
 using Ugroop.API.SQL.App_Start;
 
 [assembly: OwinStartup(typeof(Ugroop.API.SQL.Startup))]
-
 namespace Ugroop.API.SQL {
     public class Startup {
 
         public void Configuration(IAppBuilder app) {
 
-            // CORS config
-            var corsPolicy = new CorsPolicy {
-                AllowAnyMethod = false,
-                AllowAnyHeader = false,
-                AllowAnyOrigin = false,
-                SupportsCredentials = true
-            };
+            #region CORS Configuration                  .
 
-            //corsPolicy.Origins.Add("http://localhost:46055"); // Your API domain
+            //// CORS config
+            //var corsPolicy = new CorsPolicy {
+            //    AllowAnyMethod = false,
+            //    AllowAnyHeader = false,
+            //    AllowAnyOrigin = false,
+            //    SupportsCredentials = true
+            //};
 
-            var corsOptions = new CorsOptions {
-                PolicyProvider = new CorsPolicyProvider {
-                    PolicyResolver = context => Task.FromResult(corsPolicy)
-                }
-            };
-            app.UseCors(corsOptions);
+            ////corsPolicy.Origins.Add("http://localhost:46055"); // Your API domain
+
+            //var corsOptions = new CorsOptions {
+            //    PolicyProvider = new CorsPolicyProvider {
+            //        PolicyResolver = context => Task.FromResult(corsPolicy)
+            //    }
+            //};
+            //app.UseCors(corsOptions);
+
+            #endregion
+
             StormpathConfig.Initialize();
+
+            #region StormPath Configuration                        .
+
+            app.UseStormpath(new StormpathConfiguration {
+                Application = new ApplicationConfiguration {
+                    Href = StormpathConfig.Client.Configuration.Application.Href
+                },
+                Client = new ClientConfiguration {
+                    ApiKey = new ClientApiKeyConfiguration {
+                        Id = StormpathConfig.Client.Configuration.Client.ApiKey.Id,
+                        Secret = StormpathConfig.Client.Configuration.Client.ApiKey.Secret,
+                    }
+                },
+                //StormPath Login -> NOTE : Comment this code on Production
+                Web = new WebConfiguration {
+                    Login = new WebLoginRouteConfiguration {
+                        Form = new WebLoginRouteFormConfiguration {
+                            Fields = new Dictionary<string, WebFieldConfiguration> {
+                                ["login"] = new WebFieldConfiguration {
+                                    Label = "Email",
+                                    Placeholder = "you@yourdomain.com"
+                                },
+                                ["password"] = new WebFieldConfiguration {
+                                    Placeholder = "Tip: Use a strong password!"
+                                }
+                            }
+                        }
+                    }
+                }
+                //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            });
+
+            #endregion
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

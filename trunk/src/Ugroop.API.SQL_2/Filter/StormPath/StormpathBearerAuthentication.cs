@@ -48,7 +48,7 @@ namespace Ugroop.API.SQL.Filter.StormPath {
                     .AuthenticateAsync(jwtValidationRequest, cancellationToken);
 
                 var accountDetails = await validationResult.GetAccountAsync();
-
+            
                 // get account -> groups
                 var accountGroups = await accountDetails
                     .GetGroups()
@@ -58,6 +58,8 @@ namespace Ugroop.API.SQL.Filter.StormPath {
 
                 // Build an IPrincipal and return it
                 var claims = new List<Claim>();
+                var id = accountDetails.Href.Split(new char[] { '/' }).Last();
+                claims.Add(new Claim(ClaimTypes.PrimarySid, id));
                 claims.Add(new Claim(ClaimTypes.Role, role));
                 claims.Add(new Claim(ClaimTypes.Email, accountDetails.Email));
                 claims.Add(new Claim(ClaimTypes.GivenName, accountDetails.GivenName));
@@ -68,7 +70,7 @@ namespace Ugroop.API.SQL.Filter.StormPath {
             }
             catch (ResourceException rex) {
                 //// use this code to return the specific error code from StormPath API
-                //context.ErrorResult = new AuthenticationFailureResult(rex.Message, request);
+                context.ErrorResult = new AuthenticationFailureResult(rex.Message, request);
                 return;
             }
         }

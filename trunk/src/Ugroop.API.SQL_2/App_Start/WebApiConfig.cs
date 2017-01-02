@@ -5,7 +5,6 @@ using System.Web.Http.Cors;
 namespace Ugroop.API.SQL {
     public static class WebApiConfig
     {
-
         public static void Register(HttpConfiguration config) {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
@@ -24,8 +23,8 @@ namespace Ugroop.API.SQL {
             );
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/octet-stream"));
         }
-
-
     }
 }

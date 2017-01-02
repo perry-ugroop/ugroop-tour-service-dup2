@@ -18,6 +18,44 @@ namespace Ugroop.API.SQL {
 
         static UnityContainer container = new UnityContainer();
 
+        //public static void RegisterComponents() {
+        //    //var container = new UnityContainer();
+
+        //    container.RegisterType<IAccountService, AccountService>();
+        //    container.RegisterType<IReferenceService, ReferenceService>();
+        //    container.RegisterType<ISettingService, SettingService>();
+        //    container.RegisterType<IUserService, UserService>();
+        //    container.RegisterType<ISysAccessService, SysAccessService>();
+        //    container.RegisterType<ITourService, TourService>();
+
+        //    //Validators
+        //    container.RegisterInstance(typeof(IValidationProvider), new ValidationProvider(type => (IValidator)container.Resolve(typeof(Validator<>).MakeGenericType(type))));
+        //    container.RegisterType(typeof(Validator<>), typeof(NullValidator<>));
+        //    container.RegisterType<Validator<Tour>, TourValidator>();
+
+        //    container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>), new TransientLifetimeManager()
+        //                           , new InjectionConstructor());
+
+        //    // Interception
+        //    container.AddNewExtension<Interception>();
+        //    container.RegisterType<ITourService, TourService>(
+        //        new Interceptor<InterfaceInterceptor>(),
+        //        new InterceptionBehavior<LogInterceptionBehavior>());
+
+        //    GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+        //}
+
+        //public static void Register(HttpConfiguration config) {
+        //    //Register the filter injector
+        //    var providers = config.Services.GetFilterProviders().ToList();
+
+        //    var defaultprovider = providers.Single(i => i is ActionDescriptorFilterProvider);
+        //    config.Services.Remove(typeof(IFilterProvider), defaultprovider);
+
+        //    config.Services.Add(typeof(IFilterProvider), new UnityFilterProvider(container));
+        //}
+
+
         public static void RegisterComponents() {
             //var container = new UnityContainer();
 
@@ -33,8 +71,9 @@ namespace Ugroop.API.SQL {
             container.RegisterType(typeof(Validator<>), typeof(NullValidator<>));
             container.RegisterType<Validator<Tour>, TourValidator>();
 
-            container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>), new TransientLifetimeManager());
-            //container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>), new HierarchicalLifetimeManager());
+            container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>), new TransientLifetimeManager()
+                                   , new InjectionConstructor());
+
 
             // Interception
             container.AddNewExtension<Interception>();
@@ -43,6 +82,7 @@ namespace Ugroop.API.SQL {
                 new InterceptionBehavior<LogInterceptionBehavior>());
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+
         }
 
         public static void Register(HttpConfiguration config) {

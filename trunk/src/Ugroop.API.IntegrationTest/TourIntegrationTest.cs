@@ -5,32 +5,75 @@ using UGroopData.Entity.ViewModel.SQL.Data;
 using UGroopData.Utilities.String;
 using Xunit;
 using System.Text;
-using Newtonsoft.Json;
-using System.Reflection;
-using Newtonsoft.Json.Linq;
 using System.Configuration;
-using Ugroop.API.IntegrationTest;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Ugroop.API.IntegrationTest {
 
     public class TourIntegrationTest {
 
-        private const string AccessToken = "eyJraWQiOiJNRTJaUU9KTUE1N1ZTREQ4WFBXMVE3QjFYIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI1dDdNMGRkdzJtSXpydUZRUGxyYXJsIiwiaWF0IjoxNDgzMzkzNTE5LCJpc3MiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FwcGxpY2F0aW9ucy8zZkhjTGg1UDZSMkpZcTJFeG1IVWl6Iiwic3ViIjoiaHR0cHM6Ly9hcGkuc3Rvcm1wYXRoLmNvbS92MS9hY2NvdW50cy8xYVhxRkFPT3V6OXBvbUVzVlExZmpwIiwiZXhwIjoxNDgzMzk3MTE5LCJydGkiOiI1dDdNMGFKcjhDMDFGNTlaRFcwS0ZoIn0.RDmBTCjkRwBsXhciMU_2etKjkKNDD0oWY_-PlDybJvM";
+        #region CONSTRUCTOR                             .
 
-        #region HTTPCLIENT BASE                     .
+        private string BaseUri = ConfigurationManager.AppSettings["BaseUrl"].ToString();
+        public TourIntegrationTest() {
+            Instantiate_Token();
+        }
+
+        #endregion
+
+        #region HTTPCLIENT BASE                         .
 
         private HttpClient ClientBase() {
             var client = new HttpClient();
-            client.BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseUrl"].ToString());
+            client.BaseAddress = new Uri(BaseUri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenHandler.AccessToken);
+            return client;
+        }
+
+        private HttpClient ClientBase2() {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUri);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
         }
 
         #endregion
 
         #region ACTUAL HTTP RESPONSE                    .
+
+        #region TOKEN CREATE                        .
+
+        HttpResponseMessage ActualResponse_CreateToken(string login, string password) {
+            var userlogin = new {
+                login = login,
+                password = password,
+            };
+            var param = userlogin.JsonSerialize();
+            var content = new StringContent(param, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = ClientBase2().PostAsync("login", content).Result;
+            return response;
+        }
+
+        private void Create_Token() {
+            var tokenresponse = ActualResponse_CreateToken("UG_User_1", "UG_User_1");
+            TokenHandler.AccessToken = tokenresponse.Headers.GetValues("Set-Cookie").First(x => x.StartsWith("access_token")).Split('=')[1].Split(';')[0];
+        }
+
+        private void Instantiate_Token() {
+            StormpathConfig.Initialize();
+            if (string.IsNullOrEmpty(TokenHandler.AccessToken)) {
+                Create_Token();
+            }
+            else {
+                if (!TokenHandler.ValidateAccessToken().Result) {
+                    Create_Token();
+                }
+            }
+        }
+
+        #endregion
 
         #region TOUR                                .
 
@@ -109,7 +152,6 @@ namespace Ugroop.API.IntegrationTest {
 
         #endregion
 
-
         #region INTEGRATION TEST                        .
 
 
@@ -119,7 +161,7 @@ namespace Ugroop.API.IntegrationTest {
         public void Test_Add_Tour() {
             var actual = ActualResponse_Add_Tour();
             var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<Tour_Insert>();
-            
+
             Assert.NotNull(actual);
             Assert.Equal("OK", actual.ReasonPhrase);
             Assert.Equal(typeof(Tour_Insert), responseType.GetType());

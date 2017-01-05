@@ -1,11 +1,8 @@
 ﻿using Microsoft.Owin;
-using Microsoft.Owin.Cors;
 using Owin;
 using Stormpath.AspNet;
 using Stormpath.Configuration.Abstractions;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Web.Cors;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -21,9 +18,9 @@ namespace Ugroop.API.SQL {
 
             //// CORS config
             //var corsPolicy = new CorsPolicy {
-            //    AllowAnyMethod = false,
-            //    AllowAnyHeader = false,
-            //    AllowAnyOrigin = false,
+            //    AllowAnyMethod = true,
+            //    AllowAnyHeader = true,
+            //    AllowAnyOrigin = true,
             //    SupportsCredentials = true
             //};
 

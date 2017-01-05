@@ -1,4 +1,5 @@
-﻿using Stormpath.SDK.Client;
+﻿using Stormpath.SDK.Application;
+using Stormpath.SDK.Client;
 using Stormpath.SDK.Http;
 using Stormpath.SDK.Serialization;
 using Stormpath.SDK.Sync;
@@ -11,6 +12,7 @@ namespace Ugroop.API.SQL.App_Start {
 
         // This static object will allow us to use the Stormpath client object elsewhere in the application
         public static IClient Client { get; private set; }
+        public static IApplication Application { get; private set; }
 
         public static void Initialize() {
             // Build the IClient object and make it available on StormpathConfig.Client.
@@ -21,7 +23,7 @@ namespace Ugroop.API.SQL.App_Start {
                 .SetSerializer(Serializers.Create().JsonNetSerializer()
                 );
             Client = clientBuilder.Build();
-            Client.GetApplication(ApplicationHref); // Prime the cache
+            Application = Client.GetApplication(ApplicationHref); // Prime the cache
         }
     }
 

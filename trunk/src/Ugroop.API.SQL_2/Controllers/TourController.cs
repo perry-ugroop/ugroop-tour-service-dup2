@@ -1,9 +1,15 @@
 ﻿using Newtonsoft.Json.Linq;
 using Stormpath.AspNet.WebApi;
+using Stormpath.SDK;
+using Stormpath.SDK.Account;
+using Stormpath.SDK.Client;
 using System;
 using System.Net.Http;
+using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Ugroop.API.SQL.App_Start;
 using Ugroop.API.SQL.Filter;
 using UGroopData.Entity.ViewModel.SQL.Data;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
@@ -403,7 +409,8 @@ namespace Ugroop.API.SQL.Controllers {
         #endregion
 
 
-        // TEST -> EXCEPTION HANDLER / STORMPATH VALIDATION STRATEGY
+        #region TEST -> EXCEPTION HANDLER / STORMPATH VALIDATION STRATEGY           .
+
         //[StormpathGroupsRequired("Tour Admin")]
         [StormpathGroupsRequired("Tour Admin", "Tour Participant")]
         [HttpPost]
@@ -416,6 +423,8 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+
+        #endregion
 
     }
 }

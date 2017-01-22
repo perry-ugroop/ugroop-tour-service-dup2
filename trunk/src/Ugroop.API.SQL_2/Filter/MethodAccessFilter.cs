@@ -12,25 +12,6 @@ using UGroopData.Sql.Service.UGroopWeb.Interface;
 
 namespace Ugroop.API.SQL.Filter {
 
-
-    public class MethodAccessFilter : ActionFilterAttribute {
-
-        [Dependency]
-        public ISysAccessService _sysAccessService { get; set; }
-
-        public override void OnActionExecuting(HttpActionContext actionContext) {
-
-            string methodName = actionContext.ActionDescriptor.ActionName;
-            string controllerName = actionContext.ControllerContext.ControllerDescriptor.ControllerName;
-            int roleId = Identity.RoleId();
-
-            var hasMethodCallAccess = _sysAccessService.Check_RoleMethodAccess(roleId, controllerName, methodName);
-
-            base.OnActionExecuting(actionContext);
-
-        }
-    }
-
     public class UnityFilterProvider : IFilterProvider {
         private IUnityContainer _container;
         private readonly ActionDescriptorFilterProvider _defaultProvider = new ActionDescriptorFilterProvider();

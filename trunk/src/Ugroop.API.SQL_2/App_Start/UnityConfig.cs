@@ -57,13 +57,6 @@ namespace Ugroop.API.SQL {
 
 
         public static void RegisterComponents() {
-            //var container = new UnityContainer();
-
-            container.RegisterType<IAccountService, AccountService>();
-            container.RegisterType<IReferenceService, ReferenceService>();
-            container.RegisterType<ISettingService, SettingService>();
-            container.RegisterType<IUserService, UserService>();
-            container.RegisterType<ISysAccessService, SysAccessService>();
             container.RegisterType<ITourService, TourService>();
 
             //Validators
@@ -73,7 +66,6 @@ namespace Ugroop.API.SQL {
 
             container.RegisterType(typeof(IBaseRepository<>), typeof(BaseRepository<>), new TransientLifetimeManager()
                                    , new InjectionConstructor());
-
 
             // Interception
             container.AddNewExtension<Interception>();

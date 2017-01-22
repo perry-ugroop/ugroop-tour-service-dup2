@@ -80,16 +80,17 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Add_Tour() {
 
             var Tour_Insert = new Tour_Insert {
-                DestinationCity = "Mars City",
-                OrganizedBy = 3,
-                Photo = "AAA",
-                TourDescription = "AAA",
-                TourName = "AAA",
+                AccountId = 1,
+                OrgId = 1,
                 TourTypeId = 1,
-                StartDate = Convert.ToDateTime("12/25/2017"),
-                EndDate = Convert.ToDateTime("12/30/2017"),
+                TourName = "AAA",
+                StartDate = Convert.ToDateTime("12/25/2030"),
+                EndDate = Convert.ToDateTime("12/30/2030"),
+                TourDescription = "AAA",
+                DestinationCity = "Mars City",
+                TargetNo = 500,
+                Photo = "AAA",
             };
-
             var param = new { Tour_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
             HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_Tour", content).Result;
@@ -101,16 +102,17 @@ namespace Ugroop.API.IntegrationTest {
             var Tour_Update = new Tour_Update {
                 // get id from DB
                 TourId = 4090,
-                DestinationCity = "Mars City",
-                OrganizedBy = 3,
-                Photo = "XXXXX",
-                TourDescription = "AAA",
-                TourName = "AAA",
+                AccountId = 1,
+                OrgId = 1,
                 TourTypeId = 1,
-                StartDate = Convert.ToDateTime("12/25/2017"),
-                EndDate = Convert.ToDateTime("12/30/2017"),
+                TourName = "XXX",
+                StartDate = Convert.ToDateTime("12/25/2030"),
+                EndDate = Convert.ToDateTime("12/30/2030"),
+                TourDescription = "AAA",
+                DestinationCity = "Mars City",
+                TargetNo = 500,
+                Photo = "XXXXX",
             };
-
             var param = new { Tour_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
             HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_Tour", content).Result;
@@ -151,6 +153,7 @@ namespace Ugroop.API.IntegrationTest {
 
 
         #endregion
+
 
         #region INTEGRATION TEST                        .
 

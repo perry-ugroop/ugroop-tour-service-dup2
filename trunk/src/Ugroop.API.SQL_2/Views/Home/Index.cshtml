@@ -6,6 +6,8 @@
 
     $(document).ready(function () {
 
+        //alert('hi');
+
         //Insert_Tour_TEST();
 
         //Get_AllAccount();
@@ -32,23 +34,25 @@
     function Insert_Tour_TEST() {
 
         var model = {
-            DestinationCity: "Mars City",
-            OrganizedBy: "3",
-            Photo: "AAA",
-            TourDescription: "AAA",
-            TourName: "AAA",
+            AccountId: "1",
+            OrgId: "1",
             TourTypeId: "1",
-            StartDate: "2016-12-20 22:43:09.340",
-            EndDate: "2016-12-30 22:43:09.340",
+            TourName: "AAA",
+            StartDate: "2020-12-20 22:43:09.340",
+            EndDate: "2020-12-30 22:43:09.340",
+            TourDescription: "AAA",
+            DestinationCity: "Mars City",
+            TargetNo: "500",
+            Photo: "AAA",
         };
 
-        var accessToken = "eyJraWQiOiJNRTJaUU9KTUE1N1ZTREQ4WFBXMVE3QjFYIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiIzVENXMGl3a2xuSFhTNldKRWdHRlAiLCJpYXQiOjE0ODE3NzA1NTksImlzcyI6Imh0dHBzOi8vYXBpLnN0b3JtcGF0aC5jb20vdjEvYXBwbGljYXRpb25zLzNmSGNMaDVQNlIySllxMkV4bUhVaXoiLCJzdWIiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FjY291bnRzLzFhWHFGQU9PdXo5cG9tRXNWUTFmanAiLCJleHAiOjE0ODE3NzQxNTksInJ0aSI6IjNUQ1Z4T3JxQlVJdWQwZjZ5b3pkTCJ9.0n1aZN3r74wZBmxr4TrM4eDNlHq1MUsnqQ_WYc1fTjE";
+        var accessToken = "eyJraWQiOiJNRTJaUU9KTUE1N1ZTREQ4WFBXMVE3QjFYIiwic3R0IjoiYWNjZXNzIiwiYWxnIjoiSFMyNTYifQ.eyJqdGkiOiI1STVpOEtOb2U3Rm1NV3BTME1LdmIiLCJpYXQiOjE0ODUwOTQ4NjUsImlzcyI6Imh0dHBzOi8vYXBpLnN0b3JtcGF0aC5jb20vdjEvYXBwbGljYXRpb25zLzNmSGNMaDVQNlIySllxMkV4bUhVaXoiLCJzdWIiOiJodHRwczovL2FwaS5zdG9ybXBhdGguY29tL3YxL2FjY291bnRzLzFhWHFGQU9PdXo5cG9tRXNWUTFmanAiLCJleHAiOjE0ODUwOTg0NjUsInJ0aSI6IjVJNWk1MEl1M29IOVhReUZrVjRKWCJ9.YOC71kwRgVD8COGMOKg536qtiCGbSzJzI5nPmzZe2EE";
 
         $.ajax({
             type: "POST",
-            data: JSON.stringify({ Tour_Insert: model }),
+            data: JSON.stringify({ Tour_Insert : model }),
             //data: model,
-            url: "/Tour/TEST_Add_Tour_Async",
+            url: "/Tour/Add_Tour",
             contentType: "application/json",
             dataType: 'jsonp',
             headers: {

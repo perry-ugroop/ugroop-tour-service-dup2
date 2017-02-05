@@ -17,8 +17,6 @@ using UGroopData.Utilities.String;
 
 namespace Ugroop.API.SQL.Controllers {
 
-    //// allows these stormpath groups to execute the controller
-    //[StormpathGroupsRequired("Tour Admin", "Tour Participant")]
     [ApiExceptionFilter]
     public class TourController : SecurityController {
 
@@ -26,7 +24,6 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR                                .
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Add_Tour(JObject jsonData) {
             var tour = JEntity<Tour_Insert>.Instance().Get_Entity(jsonData);
@@ -35,7 +32,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Update_Tour(JObject jsonData) {
             var tour = JEntity<Tour_Update>.Instance().Get_Entity(jsonData);
@@ -44,7 +40,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Delete_Tour(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -53,7 +48,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        //[StormpathGroupsRequired("Tour Admin", "Tour Participant")]
         [HttpPost]
         public async Task<HttpResponseMessage> Get_TourByAccountAndTourId(JObject jsonData) {
             int userId = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("userId"));
@@ -63,7 +57,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        //[StormpathGroupsRequired("Tour Admin", "Tour Participant")]
         [HttpPost]
         public async Task<HttpResponseMessage> Get_TourListByAccountId(JObject jsonData) {
             int userId = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("userId"));
@@ -72,9 +65,8 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        //[StormpathGroupsRequired("Tour Admin", "Tour Participant")]
         [HttpPost]
-        public async Task<HttpResponseMessage> Get_TourByDate(JObject jsonData) {
+        public async Task<HttpResponseMessage> Get_TourListByDate(JObject jsonData) {
             var startdate = Convert.ToDateTime(JsonData.Instance(jsonData).Get_JsonObject("startdate"));
             var enddate = Convert.ToDateTime(JsonData.Instance(jsonData).Get_JsonObject("enddate"));
             return new HttpResponseMessage {
@@ -86,7 +78,6 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR PARTICIPANT                    .
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourParticipant(JObject jsonData) {
             var participant = JEntity<TourParticipant_Insert>.Instance().Get_Entity(jsonData);
@@ -95,7 +86,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Update_TourParticipant(JObject jsonData) {
             var participant = JEntity<TourParticipant_Update>.Instance().Get_Entity(jsonData);
@@ -104,7 +94,6 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Delete_TourParticipant(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -114,13 +103,20 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
         [HttpPost]
         public async Task<HttpResponseMessage> Get_TourParticipantByIdEmail(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
             string email = Convert.ToString(JsonData.Instance(jsonData).Get_JsonObject("email"));
             return new HttpResponseMessage {
-                Content = new StringContent((await TourService.Get_TourParticipantByIdEmail_Async(id,email)).JsonSerialize())
+                Content = new StringContent((await TourService.GetAsync_TourParticipantByIdEmail(id, email)).JsonSerialize())
+            };
+        }
+
+        [HttpPost]
+        public async Task<HttpResponseMessage> Get_TourParticipantsByTourId(JObject jsonData) {
+            int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("tourid"));
+            return new HttpResponseMessage {
+                Content = new StringContent((await TourService.GetAsync_AllTourParticipantsByTourId(id)).JsonSerialize())
             };
         }
 
@@ -128,7 +124,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region NEWSFEED                            .
 
-        [StormpathGroupsRequired("Tour Admin")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Add_NewsFeed(JObject jsonData) {
             var newsfeed = JEntity<Newsfeed_Insert>.Instance().Get_Entity(jsonData);
@@ -137,7 +133,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Update_NewsFeed(JObject jsonData) {
             var newsfeed = JEntity<Newsfeed_Update>.Instance().Get_Entity(jsonData);
@@ -146,7 +142,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Delete_NewsFeed(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -155,7 +151,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin", "Tour Participant")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Get_NewsfeedById(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -168,7 +164,7 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region REVIEW                              .
 
-        [StormpathGroupsRequired("Tour Admin")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Add_Review(JObject jsonData) {
             var review = JEntity<TourReview_Insert>.Instance().Get_Entity(jsonData);
@@ -177,7 +173,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Update_Review(JObject jsonData) {
             var review = JEntity<TourReview_Update>.Instance().Get_Entity(jsonData);
@@ -186,7 +182,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Delete_Review(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -195,7 +191,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin", "Tour Participant")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Get_ReviewById(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -204,7 +200,7 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
-        [StormpathGroupsRequired("Tour Admin", "Tour Participant")]
+
         [HttpPost]
         public async Task<HttpResponseMessage> Get_ReviewListByTourId(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -212,24 +208,6 @@ namespace Ugroop.API.SQL.Controllers {
                 Content = new StringContent((await TourService.GetAsync_ReviewListByTourId(id)).JsonSerialize())
             };
         }
-
-        #endregion
-
-
-        #region TEST -> EXCEPTION HANDLER / STORMPATH VALIDATION STRATEGY           .
-
-        //[StormpathGroupsRequired("Tour Admin")]
-        [StormpathGroupsRequired("Tour Admin", "Tour Participant")]
-        [HttpPost]
-        public async Task<HttpResponseMessage> TEST_Add_Tour_Async(JObject jsonData) {
-            //throw new FormatException("this is a sample exception...");
-            //var role = Identity.Role();
-            var tour = JEntity<Tour_Insert>.Instance().Get_Entity(jsonData);
-            return new HttpResponseMessage {
-                Content = new StringContent((await TourService.Add_AsyncData(tour)).JsonSerialize())
-            };
-        }
-
 
         #endregion
 

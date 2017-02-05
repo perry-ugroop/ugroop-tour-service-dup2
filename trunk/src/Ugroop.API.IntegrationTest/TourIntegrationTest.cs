@@ -138,13 +138,13 @@ namespace Ugroop.API.IntegrationTest {
         }
 
         // Params ( startdate:string  /  enddate:string )
-        HttpResponseMessage ActualResponse_Get_TourByDate() {
+        HttpResponseMessage ActualResponse_Get_TourListByDate() {
             var _startdate = "12/20/2016 00:00:00";
             var _enddate = "12/30/2016 23:59:59";
 
             var param = new { startdate = _startdate, enddate = _enddate }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourByDate", content).Result;
+            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourListByDate", content).Result;
             return response;
         }
 
@@ -202,7 +202,7 @@ namespace Ugroop.API.IntegrationTest {
 
         [Fact]
         public void Test_Get_TourByDate() {
-            var actual = ActualResponse_Get_TourByDate();
+            var actual = ActualResponse_Get_TourListByDate();
             var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<List<Tour_View>>();
 
             Assert.NotNull(actual);

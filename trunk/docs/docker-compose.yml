@@ -1,0 +1,25 @@
+version: '2.1'
+services:
+
+  tourdb:
+    build:
+       context: ./tour_db
+    environment: 
+       - ACCEPT_EULA=Y
+       - sa_password=Password1*
+    ports:
+       - "1433:1433"
+    networks:
+       default:
+          ipv4_address: 192.168.144.101
+
+  tourapi:
+    build:
+       context: ./tour_api
+    ports:
+       - "8000:8000"
+
+networks:
+  default:
+    external:
+      name: nat    # Subnet: 192.168.144.0/20, Gateway: 192.168.144.1

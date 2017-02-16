@@ -18,6 +18,8 @@ services:
        context: ./tour_api
     ports:
        - "8000:8000"
+    depends_on:
+       - "tourdb"
 
 networks:
   default:

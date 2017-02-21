@@ -1,9 +1,9 @@
 **DEPLOYMENT OF TOUR SERVICE API AND TOUR DB IN DOCKER**
 
 
-1. From your shell tool, go to your working folder (cloned issue#16) \trunk\docs.
+1. Get latest code from issue#3. -> https://github.com/trebugroop/UGroopWebApi/tree/Issue_3
 
-2. Copy all source codes from trunk/src (https://github.com/trebugroop/UGroopWebApi/tree/Issue_3/trunk/src) then     	paste into your working folder "tour_api". This is supposed to be the latest code before pull request has 	been granted for issue#3.
+2. From your shell tool, go to your working folder \trunk\src.
 
 3. Using your shell command prompt, install chocolatey 
    type : iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex

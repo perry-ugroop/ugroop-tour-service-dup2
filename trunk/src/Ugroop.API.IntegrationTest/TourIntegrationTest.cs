@@ -28,6 +28,26 @@ namespace Ugroop.API.IntegrationTest {
         private HttpClient ClientBase() {
             var client = new HttpClient();
             client.BaseAddress = new Uri(BaseUri);
+            return client;
+        }
+
+        private HttpClient ClientBase(string controllerUri) {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUri + controllerUri);
+            return client;
+        }
+
+        private HttpClient ClientBase_Auth2() {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUri);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenHandler.AccessToken);
+            return client;
+        }
+
+        private HttpClient ClientBase_Auth2(string controllerUri) {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri(BaseUri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenHandler.AccessToken);
             return client;
@@ -38,6 +58,38 @@ namespace Ugroop.API.IntegrationTest {
             client.BaseAddress = new Uri(BaseUri);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             return client;
+        }
+
+        private HttpRequestMessage DeleteRequest(StringContent content) {
+            HttpRequestMessage request = new HttpRequestMessage {
+                Content = content,
+                Method = HttpMethod.Delete,
+            };
+            return request;
+        }
+
+        private HttpRequestMessage GetRequest(StringContent content) {
+            HttpRequestMessage request = new HttpRequestMessage {
+                Content = content,
+                Method = HttpMethod.Get
+            };
+            return request;
+        }
+
+        private StringContent CreateContent(string param) {
+            return new StringContent(param, Encoding.UTF8, "application/json");
+        }
+
+        private string GetResponseString(string textRequest) {
+            var httpClient = new HttpClient();
+
+            var parameters = new Dictionary<string, string>();
+            parameters["textRequest"] = textRequest;
+
+            var response = httpClient.PostAsync(BaseUri, new FormUrlEncodedContent(parameters)).Result;
+            var contents = response.Content.ReadAsStringAsync().Result;
+
+            return contents;
         }
 
         #endregion
@@ -54,7 +106,7 @@ namespace Ugroop.API.IntegrationTest {
             };
             var param = userlogin.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase2().PostAsync("login", content).Result;
+            var response = ClientBase2().PostAsync("login", content).Result;
             return response;
         }
 
@@ -96,7 +148,7 @@ namespace Ugroop.API.IntegrationTest {
             };
             var param = new { Tour_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_Tour", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_Tour", content).Result;
             return response;
         }
 
@@ -118,7 +170,7 @@ namespace Ugroop.API.IntegrationTest {
             };
             var param = new { Tour_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_Tour", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_Tour", content).Result;
             return response;
         }
 
@@ -126,8 +178,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_Tour() {
             var _id = 4109;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_Tour", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_Tour").SendAsync(request).Result;
             return response;
         }
 
@@ -135,8 +187,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourListByAccountId() {
             var _userId = 3;
             var param = new { userId = _userId }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourListByAccountId", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourListByAccountId?jsonData={param}").Result;
             return response;
         }
 
@@ -146,11 +197,10 @@ namespace Ugroop.API.IntegrationTest {
             var _enddate = "12/30/2016 23:59:59";
 
             var param = new { startdate = _startdate, enddate = _enddate }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourListByDate", content).Result;
+            //var response = ClientBase().PostAsync("Tour/Get_TourListByDate", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourListByDate?jsonData={param}").Result;
             return response;
         }
-
 
         #endregion
 
@@ -173,7 +223,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourParticipant_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourParticipant", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourParticipant", content).Result;
             return response;
         }
 
@@ -194,7 +244,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourParticipant_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourParticipant", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourParticipant", content).Result;
             return response;
         }
 
@@ -203,8 +253,8 @@ namespace Ugroop.API.IntegrationTest {
             var _id = 1065;
             var _email = "ccc@yahoo.com";
             var param = new { id = _id, email = _email }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourParticipant", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourParticipant").SendAsync(request).Result;
             return response;
         }
 
@@ -213,8 +263,7 @@ namespace Ugroop.API.IntegrationTest {
             var _id = 1065;
             var _email = "ccc@yahoo.com";
             var param = new { id = _id, email = _email }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourParticipantByIdEmail", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourParticipantByIdEmail?jsonData={param}").Result;
             return response;
         }
 
@@ -222,8 +271,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourParticipantsByTourId() {
             var _tourid = 1065;
             var param = new { tourid = _tourid }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourParticipantsByTourId", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourParticipantsByTourId?jsonData={param}").Result;
             return response;
         }
 
@@ -242,7 +290,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourReview_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_Review", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_Review", content).Result;
             return response;
         }
 
@@ -254,7 +302,7 @@ namespace Ugroop.API.IntegrationTest {
             };
             var param = new { TourReview_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_Review", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_Review", content).Result;
             return response;
         }
 
@@ -262,8 +310,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourReview() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_Review", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_Review").SendAsync(request).Result;
             return response;
         }
 
@@ -271,8 +319,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_ReviewById() {
             var _id = 5;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_ReviewById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_ReviewById?jsonData={param}").Result;
             return response;
         }
 
@@ -280,8 +327,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_ReviewListByTourId() {
             var _tourid = 1065;
             var param = new { tourid = _tourid }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_ReviewListByTourId", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_ReviewListByTourId?jsonData={param}").Result;
             return response;
         }
 
@@ -302,7 +348,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { Newsfeed_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_NewsFeed", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_NewsFeed", content).Result;
             return response;
         }
 
@@ -318,7 +364,7 @@ namespace Ugroop.API.IntegrationTest {
             };
             var param = new { Newsfeed_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_NewsFeed", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_NewsFeed", content).Result;
             return response;
         }
 
@@ -326,8 +372,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_Newsfeed() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_NewsFeed", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_NewsFeed").SendAsync(request).Result;
             return response;
         }
 
@@ -335,8 +381,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_NewsfeedById() {
             var _id = 5;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_NewsfeedById", content).Result;
+            //var content = new StringContent(param, Encoding.UTF8, "application/json");
+            //var response = ClientBase().PostAsync("Tour/Get_NewsfeedById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_NewsfeedById?jsonData={param}").Result;
             return response;
         }
 
@@ -360,7 +407,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourNote_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourNote", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourNote", content).Result;
             return response;
         }
 
@@ -380,7 +427,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourNote_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourNote", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourNote", content).Result;
             return response;
         }
 
@@ -388,8 +435,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourNote() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourNote", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourNote").SendAsync(request).Result;
             return response;
         }
 
@@ -397,8 +444,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourNoteById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourNoteById", content).Result;
+            //var content = new StringContent(param, Encoding.UTF8, "application/json");
+            //var response = ClientBase().PostAsync("Tour/Get_TourNoteById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourNoteById?jsonData={param}").Result;
             return response;
         }
 
@@ -418,7 +466,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourPlan_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourPlan", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourPlan", content).Result;
             return response;
         }
 
@@ -434,7 +482,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourPlan_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourPlan", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourPlan", content).Result;
             return response;
         }
 
@@ -442,8 +490,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourPlan() {
             var _id = 2130;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourPlan", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourPlan").SendAsync(request).Result;
             return response;
         }
 
@@ -451,8 +499,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourPlanById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourPlanById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourPlanById?jsonData={param}").Result;
             return response;
         }
 
@@ -470,7 +517,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourPlanType_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourPlanType", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourPlanType", content).Result;
             return response;
         }
 
@@ -484,7 +531,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourPlanType_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourPlanType", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourPlanType", content).Result;
             return response;
         }
 
@@ -492,8 +539,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourPlanType() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourPlanType", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourPlanType").SendAsync(request).Result;
             return response;
         }
 
@@ -501,8 +548,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourPlanTypeById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourPlanTypeById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourPlanTypeById?jsonData={param}").Result;
             return response;
         }
 
@@ -519,7 +565,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivityType_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourActivityType", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourActivityType", content).Result;
             return response;
         }
 
@@ -532,7 +578,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivityType_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourActivityType", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourActivityType", content).Result;
             return response;
         }
 
@@ -540,8 +586,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourActivityType() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourActivityType", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourActivityType").SendAsync(request).Result;
             return response;
         }
 
@@ -549,8 +595,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourActivityTypeById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourActivityTypeById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourActivityTypeById?jsonData={param}").Result;
             return response;
         }
 
@@ -567,7 +612,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourType_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourType", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourType", content).Result;
             return response;
         }
 
@@ -580,7 +625,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourType_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourType", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourType", content).Result;
             return response;
         }
 
@@ -588,8 +633,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourType() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourType", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourType").SendAsync(request).Result;
             return response;
         }
 
@@ -597,8 +642,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTypeById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTypeById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTypeById?jsonData={param}").Result;
             return response;
         }
 
@@ -618,7 +662,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportations_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourTransportations", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourTransportations", content).Result;
             return response;
         }
 
@@ -633,7 +677,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportations_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourTransportations", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourTransportations", content).Result;
             return response;
         }
 
@@ -641,8 +685,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourTransportations() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourTransportations", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourTransportations").SendAsync(request).Result;
             return response;
         }
 
@@ -650,8 +694,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTransportationsById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTransportationsById", content).Result;
+            //var content = new StringContent(param, Encoding.UTF8, "application/json");
+            //var response = ClientBase().PostAsync("Tour/Get_TourTransportationsById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTransportationsById?jsonData={param}").Result;
             return response;
         }
 
@@ -668,7 +713,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationCar_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourTransportationCar", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourTransportationCar", content).Result;
             return response;
         }
 
@@ -682,7 +727,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationCar_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourTransportationCar", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourTransportationCar", content).Result;
             return response;
         }
 
@@ -690,8 +735,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourTransportationsCar() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourTransportationCar", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourTransportationCar").SendAsync(request).Result;
             return response;
         }
 
@@ -699,8 +744,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTransportationsCarById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTransportationCarById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTransportationCarById?jsonData={param}").Result;
             return response;
         }
 
@@ -717,7 +761,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationCruise_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourTransportationCruise", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourTransportationCruise", content).Result;
             return response;
         }
 
@@ -731,7 +775,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationCruise_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourTransportationCruise", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourTransportationCruise", content).Result;
             return response;
         }
 
@@ -739,8 +783,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourTransportationsCruise() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourTransportationCruise", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourTransportationCruise").SendAsync(request).Result;
             return response;
         }
 
@@ -748,8 +792,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTransportationsCruiseById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTransportationCruiseById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTransportationCruiseById?jsonData={param}").Result;
             return response;
         }
 
@@ -766,7 +809,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationFlight_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourTransportationFlight", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourTransportationFlight", content).Result;
             return response;
         }
 
@@ -780,7 +823,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationFlight_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourTransportationFlight", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourTransportationFlight", content).Result;
             return response;
         }
 
@@ -788,8 +831,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourTransportationsFlight() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourTransportationFlight", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourTransportationFlight").SendAsync(request).Result;
             return response;
         }
 
@@ -797,8 +840,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTransportationsFlightById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTransportationFlightById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTransportationFlightById?jsonData={param}").Result;
             return response;
         }
 
@@ -815,7 +857,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationTrain_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourTransportationTrain", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourTransportationTrain", content).Result;
             return response;
         }
 
@@ -829,7 +871,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationTrain_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourTransportationTrain", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourTransportationTrain", content).Result;
             return response;
         }
 
@@ -837,8 +879,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourTransportationsTrain() {
             var _id = 5;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourTransportationTrain", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourTransportationTrain").SendAsync(request).Result;
             return response;
         }
 
@@ -846,8 +888,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTransportationsTrainById() {
             var _id = 5;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTransportationTrainById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTransportationTrainById?jsonData={param}").Result;
             return response;
         }
 
@@ -865,7 +906,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationType_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourTransportationType", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourTransportationType", content).Result;
             return response;
         }
 
@@ -878,7 +919,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourTransportationType_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourTransportationType", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourTransportationType", content).Result;
             return response;
         }
 
@@ -886,8 +927,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourTransportationType() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourTransportationType", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourTransportationType").SendAsync(request).Result;
             return response;
         }
 
@@ -895,8 +936,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourTransportationTypeById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourTransportationTypeById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourTransportationTypeById?jsonData={param}").Result;
             return response;
         }
 
@@ -917,7 +957,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesPlace_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourActivitiesPlace", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourActivitiesPlace", content).Result;
             return response;
         }
 
@@ -934,7 +974,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesPlace_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourActivitiesPlace", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourActivitiesPlace", content).Result;
             return response;
         }
 
@@ -942,8 +982,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourActivitiesPlace() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourActivitiesPlace", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourActivitiesPlace").SendAsync(request).Result;
             return response;
         }
 
@@ -951,11 +991,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourActivitiesPlaceById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourActivitiesPlaceById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourActivitiesPlaceById?jsonData={param}").Result;
             return response;
         }
-
 
         #endregion
 
@@ -972,7 +1010,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourAttachment_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourAttachment", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourAttachment", content).Result;
             return response;
         }
 
@@ -988,7 +1026,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourAttachment_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourAttachment", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourAttachment", content).Result;
             return response;
         }
 
@@ -996,8 +1034,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourAttachment() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourAttachment", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourAttachment").SendAsync(request).Result;
             return response;
         }
 
@@ -1005,11 +1043,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourAttachmentById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourAttachmentById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourAttachmentById?jsonData={param}").Result;
             return response;
         }
-
 
         #endregion
 
@@ -1026,7 +1062,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourDirections_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourDirections", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourDirections", content).Result;
             return response;
         }
 
@@ -1042,7 +1078,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourDirections_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourDirections", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourDirections", content).Result;
             return response;
         }
 
@@ -1050,8 +1086,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourDirections() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourDirections", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourDirections").SendAsync(request).Result;
             return response;
         }
 
@@ -1059,11 +1095,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourDirectionsById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourDirectionsById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourDirectionsById?jsonData={param}").Result;
             return response;
         }
-
 
         #endregion
 
@@ -1077,7 +1111,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourDirectionType_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourDirectionType", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourDirectionType", content).Result;
             return response;
         }
 
@@ -1090,7 +1124,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourDirectionType_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourDirectionType", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourDirectionType", content).Result;
             return response;
         }
 
@@ -1098,8 +1132,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourDirectionType() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourDirectionType", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourDirectionType").SendAsync(request).Result;
             return response;
         }
 
@@ -1107,11 +1141,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourDirectionTypeById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourDirectionTypeById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourDirectionTypeById?jsonData={param}").Result;
             return response;
         }
-
 
         #endregion
 
@@ -1128,7 +1160,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourDirectionsPath_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourDirectionsPath", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourDirectionsPath", content).Result;
             return response;
         }
 
@@ -1144,7 +1176,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourDirectionsPath_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourDirectionsPath", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourDirectionsPath", content).Result;
             return response;
         }
 
@@ -1152,8 +1184,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourDirectionsPath() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourDirectionsPath", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourDirectionsPath").SendAsync(request).Result;
             return response;
         }
 
@@ -1161,11 +1193,9 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourDirectionsPathById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourDirectionsPathById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourDirectionsPathById?jsonData={param}").Result;
             return response;
         }
-
 
         #endregion
 
@@ -1189,7 +1219,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { Airports_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_Airports", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_Airports", content).Result;
             return response;
         }
 
@@ -1212,7 +1242,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { Airports_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_Airports", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_Airports", content).Result;
             return response;
         }
 
@@ -1220,8 +1250,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_Airports() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_Airports", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_Airports").SendAsync(request).Result;
             return response;
         }
 
@@ -1229,16 +1259,11 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_AirportsById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_AirportsById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_AirportsById?jsonData={param}").Result;
             return response;
         }
 
-
         #endregion
-
-
-
 
 
 
@@ -1255,7 +1280,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivities_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourActivities", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourActivities", content).Result;
             return response;
         }
 
@@ -1271,7 +1296,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivities_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourActivities", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourActivities", content).Result;
             return response;
         }
 
@@ -1279,17 +1304,26 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourActivities() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourActivities", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourActivities").SendAsync(request).Result;
             return response;
         }
+
+        //// Params ( id:int )
+        //HttpResponseMessage ActualResponse_Get_TourActivitiesById() {
+        //    var _id = 1;
+        //    var param = new { id = _id }.JsonSerialize();
+        //    var content = new StringContent(param, Encoding.UTF8, "application/json");
+        //    var response = ClientBase().PostAsync("Tour/Get_TourActivitiesById", content).Result;
+        //    return response;
+        //}
+
 
         // Params ( id:int )
         HttpResponseMessage ActualResponse_Get_TourActivitiesById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourActivitiesById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourActivitiesById?jsonData={param}").Result;
             return response;
         }
 
@@ -1307,7 +1341,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesDining_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourActivitiesDining", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourActivitiesDining", content).Result;
             return response;
         }
 
@@ -1322,7 +1356,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesDining_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourActivitiesDining", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourActivitiesDining", content).Result;
             return response;
         }
 
@@ -1330,8 +1364,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourActivitiesDining() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourActivitiesDining", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourActivitiesDining").SendAsync(request).Result;
             return response;
         }
 
@@ -1339,8 +1373,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourActivitiesDiningById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourActivitiesDiningById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourActivitiesDiningById?jsonData={param}").Result;
             return response;
         }
 
@@ -1358,7 +1391,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesLodging_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourActivitiesLodging", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourActivitiesLodging", content).Result;
             return response;
         }
 
@@ -1373,7 +1406,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesLodging_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourActivitiesLodging", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourActivitiesLodging", content).Result;
             return response;
         }
 
@@ -1381,8 +1414,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourActivitiesLodging() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourActivitiesLodging", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourActivitiesLodging").SendAsync(request).Result;
             return response;
         }
 
@@ -1390,8 +1423,7 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourActivitiesLodgingById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourActivitiesLodgingById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourActivitiesLodgingById?jsonData={param}").Result;
             return response;
         }
 
@@ -1409,7 +1441,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesMeeting_Insert }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Add_TourActivitiesMeeting", content).Result;
+            var response = ClientBase().PostAsync("Tour/Add_TourActivitiesMeeting", content).Result;
             return response;
         }
 
@@ -1424,7 +1456,7 @@ namespace Ugroop.API.IntegrationTest {
 
             var param = new { TourActivitiesMeeting_Update }.JsonSerialize();
             var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Update_TourActivitiesMeeting", content).Result;
+            var response = ClientBase().PutAsync("Tour/Update_TourActivitiesMeeting", content).Result;
             return response;
         }
 
@@ -1432,8 +1464,8 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Delete_TourActivitiesMeeting() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Delete_TourActivitiesMeeting", content).Result;
+            var request = DeleteRequest(CreateContent(param));
+            var response = ClientBase("Tour/Delete_TourActivitiesMeeting").SendAsync(request).Result;
             return response;
         }
 
@@ -1441,14 +1473,11 @@ namespace Ugroop.API.IntegrationTest {
         HttpResponseMessage ActualResponse_Get_TourActivitiesMeetingById() {
             var _id = 1;
             var param = new { id = _id }.JsonSerialize();
-            var content = new StringContent(param, Encoding.UTF8, "application/json");
-            HttpResponseMessage response = ClientBase().PostAsync("Tour/Get_TourActivitiesMeetingById", content).Result;
+            var response = ClientBase().GetAsync($"Tour/Get_TourActivitiesMeetingById?jsonData={param}").Result;
             return response;
         }
 
         #endregion
-
-
 
         #endregion
 
@@ -1506,7 +1535,6 @@ namespace Ugroop.API.IntegrationTest {
             Assert.Equal("OK", actual.ReasonPhrase);
             Assert.Equal(typeof(List<Tour_View>), responseType.GetType());
         }
-
 
         #endregion
 
@@ -2103,6 +2131,317 @@ namespace Ugroop.API.IntegrationTest {
         }
 
         #endregion
+
+
+
+        #region TOUR TRANSPORTATION TYPE                               .
+
+        [Fact]
+        public void Test_Add_TourTransportationType() {
+            var actual = ActualResponse_Add_TourTransportationType();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourTransportationType_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourTransportationType_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_TourTransportationType() {
+            var actual = ActualResponse_Update_TourTransportationType();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourTransportationType_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourTransportationType_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_TourTransportationType() {
+            var actual = ActualResponse_Delete_TourTransportationType();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_TourTransportationTypeById() {
+            var actual = ActualResponse_Get_TourTransportationTypeById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourTransportationType>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourTransportationType), responseType.GetType());
+        }
+
+        #endregion
+
+        #region TOUR ACTIVITIES PLACE                               .
+
+        [Fact]
+        public void Test_Add_TourActivitiesPlace() {
+            var actual = ActualResponse_Add_TourActivitiesPlace();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourActivitiesPlace_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourActivitiesPlace_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_TourActivitiesPlace() {
+            var actual = ActualResponse_Update_TourActivitiesPlace();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourActivitiesPlace_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourActivitiesPlace_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_TourActivitiesPlace() {
+            var actual = ActualResponse_Delete_TourActivitiesPlace();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_TourActivitiesPlaceById() {
+            var actual = ActualResponse_Get_TourActivitiesPlaceById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourActivitiesPlace>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourActivitiesPlace), responseType.GetType());
+        }
+
+        #endregion
+
+        #region TOUR ATTACHMENT                                .
+
+        [Fact]
+        public void Test_Add_TourAttachment() {
+            var actual = ActualResponse_Add_TourAttachment();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourAttachment_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourAttachment_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_TourAttachment() {
+            var actual = ActualResponse_Update_TourAttachment();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourAttachment_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourAttachment_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_TourAttachment() {
+            var actual = ActualResponse_Delete_TourAttachment();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_TourAttachmentById() {
+            var actual = ActualResponse_Get_TourAttachmentById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourAttachment>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourAttachment), responseType.GetType());
+        }
+
+        #endregion
+
+        #region TOUR DIRECTIONS                                .
+
+        [Fact]
+        public void Test_Add_TourDirections() {
+            var actual = ActualResponse_Add_TourDirections();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirections_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirections_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_TourDirections() {
+            var actual = ActualResponse_Update_TourDirections();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirections_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirections_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_TourDirections() {
+            var actual = ActualResponse_Delete_TourDirections();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_TourDirectionsById() {
+            var actual = ActualResponse_Get_TourDirectionsById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirections>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirections), responseType.GetType());
+        }
+
+        #endregion
+
+        #region TOUR DIRECTIONS TYPE                               .
+
+        [Fact]
+        public void Test_Add_TourDirectionType() {
+            var actual = ActualResponse_Add_TourDirectionType();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirectionType_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirectionType_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_TourDirectionType() {
+            var actual = ActualResponse_Update_TourDirectionType();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirectionType_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirectionType_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_TourDirectionType() {
+            var actual = ActualResponse_Delete_TourDirectionType();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_TourDirectionTypeById() {
+            var actual = ActualResponse_Get_TourDirectionTypeById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirectionType>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirectionType), responseType.GetType());
+        }
+
+        #endregion
+
+        #region TOUR DIRECTIONS                                .
+
+        [Fact]
+        public void Test_Add_TourDirectionsPath() {
+            var actual = ActualResponse_Add_TourDirectionsPath();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirectionsPath_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirectionsPath_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_TourDirectionsPath() {
+            var actual = ActualResponse_Update_TourDirectionsPath();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirectionsPath_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirectionsPath_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_TourDirectionsPath() {
+            var actual = ActualResponse_Delete_TourDirectionsPath();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_TourDirectionsPathById() {
+            var actual = ActualResponse_Get_TourDirectionsPathById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<TourDirectionsPath>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(TourDirectionsPath), responseType.GetType());
+        }
+
+        #endregion
+
+        #region AIRPORTS                                .
+
+        [Fact]
+        public void Test_Add_Airports() {
+            var actual = ActualResponse_Add_Airports();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<Airports_Insert>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(Airports_Insert), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Update_Airports() {
+            var actual = ActualResponse_Update_Airports();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<Airports_Update>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(Airports_Update), responseType.GetType());
+        }
+
+        [Fact]
+        public void Test_Delete_Airports() {
+            var actual = ActualResponse_Delete_Airports();
+            var responseValue = actual.Content.ReadAsStringAsync().Result;
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.True(Convert.ToBoolean(responseValue));
+        }
+
+        [Fact]
+        public void Test_Get_AirportsById() {
+            var actual = ActualResponse_Get_AirportsById();
+            var responseType = actual.Content.ReadAsStringAsync().Result.JsonDeserialize<Airports>();
+
+            Assert.NotNull(actual);
+            Assert.Equal("OK", actual.ReasonPhrase);
+            Assert.Equal(typeof(Airports), responseType.GetType());
+        }
+
+        #endregion
+
 
 
 

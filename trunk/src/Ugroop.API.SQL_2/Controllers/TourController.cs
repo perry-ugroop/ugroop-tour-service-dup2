@@ -449,6 +449,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Plan
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Plan record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourPlan(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -457,6 +464,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Plan
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Plan record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourPlanById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -469,6 +483,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR PLAN TYPE                             .
 
+        /// <summary>
+        /// Add Tour Plan Type
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Plan Type record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourPlanType(JObject jsonData) {
             var note = JEntity<TourPlanType_Insert>.Instance().Get_Entity(jsonData);
@@ -477,6 +497,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Plan Type
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Plan Type record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourPlanType(JObject jsonData) {
             var note = JEntity<TourPlanType_Update>.Instance().Get_Entity(jsonData);
@@ -485,6 +511,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Plan Type
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Plan Type record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourPlanType(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -493,6 +526,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Plan Type
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Plan Type record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourPlanTypeById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -505,6 +545,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ACTIVITY TYPE                             .
 
+        /// <summary>
+        /// Add Tour Activity Type
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Activity Type record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourActivityType(JObject jsonData) {
             var note = JEntity<TourActivityType_Insert>.Instance().Get_Entity(jsonData);
@@ -513,6 +559,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Activity Type
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Activity Type record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourActivityType(JObject jsonData) {
             var note = JEntity<TourActivityType_Update>.Instance().Get_Entity(jsonData);
@@ -521,6 +573,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Activity Type
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Activity Type record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourActivityType(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -529,6 +588,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Activity Type
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Activity Type record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourActivityTypeById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -541,6 +607,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TYPE                             .
 
+        /// <summary>
+        /// Add Tour Type
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Type record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourType(JObject jsonData) {
             var note = JEntity<TourType_Insert>.Instance().Get_Entity(jsonData);
@@ -549,6 +621,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Type
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Type record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourType(JObject jsonData) {
             var note = JEntity<TourType_Update>.Instance().Get_Entity(jsonData);
@@ -557,6 +635,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Type
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Type record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourType(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -565,6 +650,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Type
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Type record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTypeById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -578,6 +670,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TRANSPORTATIONS                             .
 
+        /// <summary>
+        /// Add Tour Transportations
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Transportations record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourTransportations(JObject jsonData) {
             var transpo = JEntity<TourTransportations_Insert>.Instance().Get_Entity(jsonData);
@@ -586,6 +684,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Transportations
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Transportations record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourTransportations(JObject jsonData) {
             var transpo = JEntity<TourTransportations_Update>.Instance().Get_Entity(jsonData);
@@ -594,6 +698,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Transportations
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Transportations record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourTransportations(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -602,6 +713,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Transportations
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Transportations record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTransportationsById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -614,6 +732,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TRANSPORTATIONS CAR                            .
 
+        /// <summary>
+        /// Add Tour Transportation Car
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Transportation Car record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourTransportationCar(JObject jsonData) {
             var transpo = JEntity<TourTransportationCar_Insert>.Instance().Get_Entity(jsonData);
@@ -622,6 +746,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Transportation Car
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Transportation Car record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourTransportationCar(JObject jsonData) {
             var transpo = JEntity<TourTransportationCar_Update>.Instance().Get_Entity(jsonData);
@@ -630,6 +760,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Transportation Car
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Transportation Car record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourTransportationCar(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -638,6 +775,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Transportation Car
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Transportation Car record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTransportationCarById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -650,6 +794,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TRANSPORTATIONS CRUISE                            .
 
+        /// <summary>
+        /// Add Tour Transportation Cruise
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Transportation Cruise record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourTransportationCruise(JObject jsonData) {
             var transpo = JEntity<TourTransportationCruise_Insert>.Instance().Get_Entity(jsonData);
@@ -658,6 +808,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Transportation Cruise
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Transportation Cruise record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourTransportationCruise(JObject jsonData) {
             var transpo = JEntity<TourTransportationCruise_Update>.Instance().Get_Entity(jsonData);
@@ -666,6 +822,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Transportation Cruise
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Transportation Cruise record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourTransportationCruise(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -674,6 +837,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Transportation Cruise
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Transportation Cruise record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTransportationCruiseById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -686,6 +856,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TRANSPORTATIONS FLIGHT                            .
 
+        /// <summary>
+        /// Add Tour Transportation Flight
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Transportation Flight record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourTransportationFlight(JObject jsonData) {
             var transpo = JEntity<TourTransportationFlight_Insert>.Instance().Get_Entity(jsonData);
@@ -694,6 +870,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Transportation Flight
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Transportation Flight record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourTransportationFlight(JObject jsonData) {
             var transpo = JEntity<TourTransportationFlight_Update>.Instance().Get_Entity(jsonData);
@@ -702,6 +884,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Transportation Flight
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Transportation Flight record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourTransportationFlight(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -710,6 +899,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Transportation Flight
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Transportation Flight record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTransportationFlightById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -722,6 +918,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TRANSPORTATIONS TRAIN                            .
 
+        /// <summary>
+        /// Add Tour Transportation Train
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Transportation Train record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourTransportationTrain(JObject jsonData) {
             var transpo = JEntity<TourTransportationTrain_Insert>.Instance().Get_Entity(jsonData);
@@ -730,6 +932,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Transportation Train
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Transportation Train record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourTransportationTrain(JObject jsonData) {
             var transpo = JEntity<TourTransportationTrain_Update>.Instance().Get_Entity(jsonData);
@@ -738,6 +946,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Transportation Train
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Transportation Train record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourTransportationTrain(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -746,6 +961,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Transportation Train
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Transportation Train record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTransportationTrainById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -760,6 +982,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR TRANSPORTATION TYPE                             .
 
+        /// <summary>
+        /// Add Tour Transportation Type
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Transportation Type record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourTransportationType(JObject jsonData) {
             var transpo = JEntity<TourTransportationType_Insert>.Instance().Get_Entity(jsonData);
@@ -768,6 +996,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Transportation Type
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Transportation Type record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourTransportationType(JObject jsonData) {
             var transpo = JEntity<TourTransportationType_Update>.Instance().Get_Entity(jsonData);
@@ -776,6 +1010,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Transportation Type
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Transportation Type record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourTransportationType(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -784,6 +1025,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Transportation Type
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Transportation Type record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourTransportationTypeById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -796,6 +1044,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ACTIVITIES PLACE                             .
 
+        /// <summary>
+        /// Add Tour Activites Place
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Activites Place record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourActivitiesPlace(JObject jsonData) {
             var place = JEntity<TourActivitiesPlace_Insert>.Instance().Get_Entity(jsonData);
@@ -804,6 +1058,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Activites Place
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Activites Place record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourActivitiesPlace(JObject jsonData) {
             var place = JEntity<TourActivitiesPlace_Update>.Instance().Get_Entity(jsonData);
@@ -812,6 +1072,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Activites Place
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Activites Place record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourActivitiesPlace(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -820,6 +1087,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Activites Place
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Activites Place record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourActivitiesPlaceById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -832,6 +1106,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ATTACHMENT                             .
 
+        /// <summary>
+        /// Add Tour Attachment
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Attachment record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourAttachment(JObject jsonData) {
             var attach = JEntity<TourAttachment_Insert>.Instance().Get_Entity(jsonData);
@@ -840,6 +1120,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Attachment
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Attachment record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourAttachment(JObject jsonData) {
             var attach = JEntity<TourAttachment_Update>.Instance().Get_Entity(jsonData);
@@ -848,6 +1134,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Attachment
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Attachment record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourAttachment(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -856,6 +1149,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Attachment
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Attachment record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourAttachmentById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -868,6 +1168,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR DIRECTIONS                             .
 
+        /// <summary>
+        /// Add Tour Directions
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Directions record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourDirections(JObject jsonData) {
             var attach = JEntity<TourDirections_Insert>.Instance().Get_Entity(jsonData);
@@ -876,6 +1182,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Directions
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Directions record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourDirections(JObject jsonData) {
             var attach = JEntity<TourDirections_Update>.Instance().Get_Entity(jsonData);
@@ -884,6 +1196,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Directions
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Directions record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourDirections(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -892,6 +1211,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Directions
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Directions record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourDirectionsById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -904,6 +1230,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR DIRECTIONS TYPE                             .
 
+        /// <summary>
+        /// Add Tour Direction Type
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Direction Type record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourDirectionType(JObject jsonData) {
             var attach = JEntity<TourDirectionType_Insert>.Instance().Get_Entity(jsonData);
@@ -912,6 +1244,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Direction Type
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Direction Type record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourDirectionType(JObject jsonData) {
             var attach = JEntity<TourDirectionType_Update>.Instance().Get_Entity(jsonData);
@@ -920,6 +1258,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Direction Type
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Direction Type record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourDirectionType(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -928,6 +1273,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Direction Type
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Direction Type record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourDirectionTypeById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -940,6 +1292,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR DIRECTIONS PATH                            .
 
+        /// <summary>
+        /// Add Tour Directions Path
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Directions Path record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourDirectionsPath(JObject jsonData) {
             var attach = JEntity<TourDirectionsPath_Insert>.Instance().Get_Entity(jsonData);
@@ -948,6 +1306,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Directions Path
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Directions Path record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourDirectionsPath(JObject jsonData) {
             var attach = JEntity<TourDirectionsPath_Update>.Instance().Get_Entity(jsonData);
@@ -956,6 +1320,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Directions Path
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Directions Path record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourDirectionsPath(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -964,6 +1335,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Directions Path
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Directions Path record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourDirectionsPathById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -976,6 +1354,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region AIRPORTS                            .
 
+        /// <summary>
+        /// Add Airports
+        /// </summary>
+        /// <remarks>
+        /// Insert new Airports record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_Airports(JObject jsonData) {
             var attach = JEntity<Airports_Insert>.Instance().Get_Entity(jsonData);
@@ -984,6 +1368,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Airports
+        /// </summary>
+        /// <remarks>
+        /// Update existing Airports record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_Airports(JObject jsonData) {
             var attach = JEntity<Airports_Update>.Instance().Get_Entity(jsonData);
@@ -992,6 +1382,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Airports
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Airports record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_Airports(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -1000,6 +1397,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Airports
+        /// </summary>
+        /// <remarks>
+        /// Get Airports record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_AirportsById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -1012,6 +1416,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TIMEZONE                            .
 
+        /// <summary>
+        /// Add Timezone
+        /// </summary>
+        /// <remarks>
+        /// Insert new Timezone record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TimeZone(JObject jsonData) {
             var attach = JEntity<TimeZone_Insert>.Instance().Get_Entity(jsonData);
@@ -1020,6 +1430,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Timezone
+        /// </summary>
+        /// <remarks>
+        /// Update existing Timezone record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TimeZone(JObject jsonData) {
             var attach = JEntity<TimeZone_Update>.Instance().Get_Entity(jsonData);
@@ -1028,6 +1444,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Timezone
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Timezone record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TimeZone(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -1036,6 +1459,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Timezone
+        /// </summary>
+        /// <remarks>
+        /// Get Timezone record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TimeZoneById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -1050,6 +1480,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ACTIVITES                             .
 
+        /// <summary>
+        /// Add Tour Activities
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Activities record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourActivities(JObject jsonData) {
             var activity = JEntity<TourActivities_Insert>.Instance().Get_Entity(jsonData);
@@ -1058,6 +1494,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Activities
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Activities record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourActivities(JObject jsonData) {
             var transpo = JEntity<TourActivities_Update>.Instance().Get_Entity(jsonData);
@@ -1066,6 +1508,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Activities
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Activities record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourActivities(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -1074,6 +1523,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Activities
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Activities record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourActivitiesById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -1086,6 +1542,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ACTIVITES DINING                            .
 
+        /// <summary>
+        /// Add Tour Activities Dining
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Activities Dining record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourActivitiesDining(JObject jsonData) {
             var activity = JEntity<TourActivitiesDining_Insert>.Instance().Get_Entity(jsonData);
@@ -1094,6 +1556,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Activities Dining
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Activities Dining record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourActivitiesDining(JObject jsonData) {
             var activity = JEntity<TourActivitiesDining_Update>.Instance().Get_Entity(jsonData);
@@ -1102,6 +1570,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Activities Dining
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Activities Dining record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourActivitiesDining(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -1110,6 +1585,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Activities Dining
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Activities Dining record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourActivitiesDiningById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -1122,6 +1604,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ACTIVITES LODGING                            .
 
+        /// <summary>
+        /// Add Tour Activities Lodging
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Activities Lodging record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourActivitiesLodging(JObject jsonData) {
             var activity = JEntity<TourActivitiesLodging_Insert>.Instance().Get_Entity(jsonData);
@@ -1130,6 +1618,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Activities Lodging
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Activities Lodging record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourActivitiesLodging(JObject jsonData) {
             var activity = JEntity<TourActivitiesLodging_Update>.Instance().Get_Entity(jsonData);
@@ -1138,6 +1632,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Activities Lodging
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Activities Lodging record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourActivitiesLodging(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -1146,6 +1647,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Activities Lodging
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Activities Lodging record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourActivitiesLodgingById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));
@@ -1158,6 +1666,12 @@ namespace Ugroop.API.SQL.Controllers {
 
         #region TOUR ACTIVITES MEETING                            .
 
+        /// <summary>
+        /// Add Tour Activities Meeting
+        /// </summary>
+        /// <remarks>
+        /// Insert new Tour Activities Meeting record
+        /// </remarks>
         [HttpPost]
         public async Task<HttpResponseMessage> Add_TourActivitiesMeeting(JObject jsonData) {
             var activity = JEntity<TourActivitiesMeeting_Insert>.Instance().Get_Entity(jsonData);
@@ -1166,6 +1680,12 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Update Tour Activities Meeting
+        /// </summary>
+        /// <remarks>
+        /// Update existing Tour Activities Meeting record
+        /// </remarks>
         [HttpPut]
         public async Task<HttpResponseMessage> Update_TourActivitiesMeeting(JObject jsonData) {
             var activity = JEntity<TourActivitiesMeeting_Update>.Instance().Get_Entity(jsonData);
@@ -1174,6 +1694,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Delete Tour Activities Meeting
+        /// </summary>
+        /// <remarks>
+        /// Set the existing Tour Activities Meeting record as inactive
+        /// </remarks>
+        /// <para/>id
         [HttpDelete]
         public async Task<HttpResponseMessage> Delete_TourActivitiesMeeting(JObject jsonData) {
             int id = Convert.ToInt32(JsonData.Instance(jsonData).Get_JsonObject("id"));
@@ -1182,6 +1709,13 @@ namespace Ugroop.API.SQL.Controllers {
             };
         }
 
+        /// <summary>
+        /// Get single Tour Activities Meeting
+        /// </summary>
+        /// <remarks>
+        /// Get Tour Activities Meeting record by Id
+        /// </remarks>
+        /// <param name="id"></param>
         [HttpGet]
         public async Task<HttpResponseMessage> Get_TourActivitiesMeetingById(string jsonData) {
             int id = Convert.ToInt32(JsonData.Instance().Get_JsonObject(jsonData, "id"));

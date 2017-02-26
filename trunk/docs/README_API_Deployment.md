@@ -14,16 +14,16 @@
 
    Note: Wait 5 minutes to create the database after build complete
 
-4. You may check if DB is already created by getting IP Address of TourDB
+5. You may check if DB is already created by getting IP Address of TourDB
    
    a.) type -> docker inspect --format '{{ .NetworkSettings.Networks.nat.IPAddress }}' <tourdb_container_id> 
    b.) connect via sql management studio ; Login : sa  /  Password : Password1*
 
-5. Check if API is running, type -> docker ps
+6. Check if API is running, type -> docker ps
    a.) If API is not running, type -> docker ps -a  ; get the <tourapi_container_id> 
    b.) Run the Tour API service, type -> docker start <tourapi_container_id>
 
-5. Test the API via Swagger
+7. Test the API via Swagger
 	
    a.) Type in browser -> http://cnt_tour_api:8000/swagger/ui/index
    b.) Test Add_TourType -> http://cnt_tour_api:8000/swagger/ui/index#!/Tour/Tour_Add_TourType

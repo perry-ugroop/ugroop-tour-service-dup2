@@ -10,6 +10,8 @@ services:
        - sa_password=Password1*
     ports:
        - "1433:1433"
+    volumes:
+       - C:/data/docker_volumes/tourdb/logs:C:/logs
 
   tourapi:
     build:

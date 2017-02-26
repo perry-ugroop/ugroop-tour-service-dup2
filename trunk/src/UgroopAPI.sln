@@ -15,13 +15,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.PostgreSQL", "Ug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.SQL", "Ugroop.API.SQL_2\Ugroop.API.SQL.csproj", "{89797E00-2190-44BA-BB65-D4520BDB0119}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{44F59C85-815F-47FA-BE82-581F24D73154}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D8FD78AB-24B4-4D15-98B3-A63054AFBBD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.Tests", "Ugroop.API.Tests\Ugroop.API.Tests\Ugroop.API.Tests.csproj", "{8B8EF3C1-8D27-4127-A3C0-353E98D5BF51}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ugroop.API.IntegrationTest", "Ugroop.API.IntegrationTest\Ugroop.API.IntegrationTest.csproj", "{1F9D01AF-3C0B-41E4-BAFE-7280D0F36E7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceFiles", "ReferenceFiles", "{DEF3E0CA-8843-4EA1-A5B3-5309335B7B30}"
+	ProjectSection(SolutionItems) = preProject
+		ReferenceFiles\UGroopData.dll = ReferenceFiles\UGroopData.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

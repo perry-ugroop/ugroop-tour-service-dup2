@@ -5,28 +5,25 @@
    Fork -> https://github.com/trebugroop/UGroopWebApi
    Branch -> Issue_16
 
-2. Create this folder structure on your local machine -> "C:/data/docker_volumes/tourdb/logs"
-   The created directory will be use as host copy of logs during docker deployment.
-
-3. Using your shell command prompt, install Chocolatey 
+2. Using your shell command prompt, install Chocolatey 
    type -> iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 
-4. From your shell tool running as Administrator, go to your cloned folder\trunk\src. 
+3. From your shell tool running as Administrator, go to your cloned folder\trunk\src. 
 
-5. Build the images, type -> docker-compose up -d --build 
+4. Build the images, type -> docker-compose up -d --build 
 
    Note: Wait 5 minutes to create the database after build complete
 
-6. You may check if DB is already created by getting IP Address of TourDB
+5. You may check if DB is already created by getting IP Address of TourDB
    
    a.) type -> docker inspect --format '{{ .NetworkSettings.Networks.nat.IPAddress }}' <tourdb_container_id> 
    b.) connect via sql management studio ; Login : sa  /  Password : Password1*
 
-7. Check if API is running, type -> docker ps
+6. Check if API is running, type -> docker ps
    a.) If API is not running, type -> docker ps -a  ; get the <tourapi_container_id> 
    b.) Run the Tour API service, type -> docker start <tourapi_container_id>
 
-8. Test the API via Swagger
+7. Test the API via Swagger
 	
    a.) Type in browser -> http://cnt_tour_api:8000/swagger/ui/index
    b.) Test Add_TourType -> http://cnt_tour_api:8000/swagger/ui/index#!/Tour/Tour_Add_TourType

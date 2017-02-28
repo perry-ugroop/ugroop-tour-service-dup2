@@ -11,7 +11,7 @@
 3. Using your shell command prompt, install Chocolatey 
    type -> iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
 
-4. From your shell tool, go to your cloned folder\trunk\src. 
+4. From your shell tool running as Administrator, go to your cloned folder\trunk\src. 
 
 5. Build the images, type -> docker-compose up -d --build 
 

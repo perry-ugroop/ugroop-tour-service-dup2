@@ -11,7 +11,7 @@ services:
     ports:
        - "1433:1433"
     volumes:
-       - C:/data/docker_volumes/tourdb/logs:C:/logs
+       - ./logs:C:/logs
 
   tourapi:
     build:

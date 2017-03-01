@@ -1,6 +1,4 @@
-﻿using Stormpath.AspNet.WebApi;
-using System.Web.Http;
-using Ugroop.API.SQL.Filter;
+﻿using System.Web.Http;
 using Ugroop.API.SQL.Filter.StormPath;
 using UGroopData.Sql.Service.UGroopWeb.Interface;
 

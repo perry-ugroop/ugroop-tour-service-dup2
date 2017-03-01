@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+
+  tourdb:
+    build:
+       context: ./tour_db
+    hostname: cnt_tour_db   
+    environment: 
+       - ACCEPT_EULA=Y
+       - sa_password=Password1*
+    ports:
+       - "1433:1433"
+    volumes:
+       - ./logs:C:/logs
+
+  tourapi:
+    build:
+       context: .
+    hostname: cnt_tour_api
+    ports:
+       - "8000:8000"
+    depends_on:
+       - "tourdb"
+
+networks:
+  default:
+    external:
+      name: nat

@@ -49,7 +49,7 @@ namespace Ugroop.API.SQL {
                         Secret = StormpathConfig.Client.Configuration.Client.ApiKey.Secret,
                     }
                 },
-                //StormPath Login -> NOTE : Comment this code on Production
+                //StormPath Login -> NOTE : Delete this code before deployment to Production
                 Web = new WebConfiguration {
                     Login = new WebLoginRouteConfiguration {
                         Form = new WebLoginRouteFormConfiguration {
